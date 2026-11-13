@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>断面 DXF × SAE J1100 / J182 × DTS 语义对齐</title>
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--ink:#1d1d1b;--mute:#6b6b66;--line:#dcdcd6;--acc:#1f5fbf;--warn:#b45309}
+@media(prefers-color-scheme:dark){:root{--bg:#161616;--panel:#202020;--ink:#ececea;--mute:#9a9a94;--line:#363632;--acc:#6ea2f0;--warn:#e0a458}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+header{padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+h1{font-size:17px;margin:0 0 2px}header p{margin:0;color:var(--mute);font-size:12.5px}
+.warn{background:var(--panel);border-left:3px solid var(--warn);margin:12px 20px 0;padding:8px 12px;font-size:12.5px;color:var(--mute)}
+nav{display:flex;gap:6px;padding:12px 20px 0;flex-wrap:wrap}
+nav button,.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:6px;cursor:pointer;font:inherit}
+nav button.on{border-color:var(--acc);color:var(--acc);font-weight:600}
+main{display:grid;grid-template-columns:210px 1fr;gap:12px;padding:12px 20px 24px}
+@media(max-width:860px){main{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+#layers label{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:1px 0;cursor:pointer;word-break:break-all}
+#layers i{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+#cv{width:100%;height:520px;display:block;background:#fff;border-radius:6px;border:1px solid var(--line);cursor:grab;touch-action:none}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.mute{color:var(--mute);font-size:12.5px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}th,td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.it{cursor:pointer}tr.it:hover,tr.sel{background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.tag{display:inline-block;padding:0 6px;border-radius:9px;font-size:11px;border:1px solid var(--line);color:var(--mute)}
+.tag.v{color:var(--warn);border-color:var(--warn)}code{font-size:12px}
+.hid{display:none}.ref td:first-child{white-space:nowrap}
+</style>
+</head>
+<body>
+<header>
+  <h1>断面 DXF × SAE J1100 / J182 × DTS 语义对齐</h1>
+  <p>每个尺寸 = DXF 图元 + 标准代号 + 驱动的断面图层 + DTS 键。点表格行，图上高亮对应尺寸。</p>
+</header>
+<div class="warn">页面中的几何与数值是<strong>示意数据</strong>，不是任何真实车型。J1100 的编号与定义标注为“待核对”的需对照标准原文确认；DTS 目标值留空，等你填入贵司 DTS。</div>
+<nav id="tabs"></nav>
+<main>
+  <aside class="card">
+    <div class="mute" style="margin-bottom:4px">图层</div><div id="layers"></div>
+    <hr style="border:0;border-top:1px solid var(--line)">
+    <label class="btn" style="display:block;text-align:center">加载自己的 DXF<input id="file" type="file" accept=".dxf" class="hid"></label>
+    <p class="mute" style="margin:6px 0 0">也可把 .dxf 拖进画布。支持 LINE / POLYLINE / LWPOLYLINE / CIRCLE / ARC / TEXT。</p>
+  </aside>
+  <section>
+    <div class="card">
+      <div class="row"><strong id="stitle"></strong><span class="mute" id="splane"></span></div>
+      <canvas id="cv"></canvas>
+      <div class="row"><button class="btn" id="fit">适配视图</button><button class="btn" id="csv">导出语义 CSV</button><button class="btn" id="dl">下载本 DXF</button><span class="mute" id="coord"></span></div>
+      <p class="mute" id="sdesc"></p>
+    </div>
+    <div class="card" style="margin-top:12px;overflow-x:auto">
+      <table id="tbl"><thead><tr><th>代号</th><th>名称</th><th>值</th><th>来源</th><th>驱动的断面图层</th><th>包络约束</th><th>DTS 键 / 目标</th><th>状态</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="card" id="pend" style="margin-top:12px"></div>
+    <div class="card" id="refs" style="margin-top:12px"></div>
+  </section>
+</main>
+<script>
+const ACI={1:'#d32f2f',2:'#b8860b',3:'#2e7d32',4:'#0097a7',5:'#1f5fbf',6:'#8e24aa',7:'#222',8:'#888',9:'#aaa',30:'#e07b00',40:'#c9a000',50:'#9aa600',80:'#2f9e44',110:'#12a182',140:'#1971c2',170:'#6741d9',200:'#c2255c'};
+const dec=s=>s.replace(/\\U\+([0-9A-Fa-f]{4})/g,(_,h)=>String.fromCharCode(parseInt(h,16)));
+function parseDXF(txt){
+  const L=txt.split(/\r?\n/),recs=[];let r=null;
+  for(let i=0;i+1<L.length;i+=2){const c=parseInt(L[i]),v=L[i+1].trim();
+    if(c===0){r={t:v,p:{}};recs.push(r)}else if(r){(r.p[c]=r.p[c]||[]).push(v)}}
+  const g=(r,c,d)=>r.p[c]?r.p[c][0]:d,n=(r,c)=>parseFloat(g(r,c,0)),layers={},ents=[];
+  let sec='',pl=null;
+  for(const r of recs){
+    if(r.t==='SECTION'){sec=g(r,2,'');continue}if(r.t==='ENDSEC'){sec='';continue}
+    if(sec==='TABLES'){if(r.t==='LAYER')layers[g(r,2,'0')]={color:parseInt(g(r,62,7))};continue}
+    if(sec!=='ENTITIES')continue;
+    if(false){layers[g(r,2,'0')]={color:parseInt(g(r,62,7))};continue}
+    if(r.t==='VERTEX'&&pl){pl.pts.push([n(r,10),n(r,20)]);continue}
+    if(r.t==='SEQEND'){pl=null;continue}
+    const layer=g(r,8,'0');
+    if(r.t==='POLYLINE'){pl={t:'PL',layer,closed:(parseInt(g(r,70,0))&1)===1,pts:[]};ents.push(pl)}
+    else if(r.t==='LWPOLYLINE'){const xs=(r.p[10]||[]).map(parseFloat),ys=(r.p[20]||[]).map(parseFloat);ents.push({t:'PL',layer,closed:(parseInt(g(r,70,0))&1)===1,pts:xs.map((x,i)=>[x,ys[i]])})}
+    else if(r.t==='LINE')ents.push({t:'LINE',layer,a:[n(r,10),n(r,20)],b:[n(r,11),n(r,21)]});
+    else if(r.t==='CIRCLE')ents.push({t:'CIRCLE',layer,c:[n(r,10),n(r,20)],r:n(r,40),s:0,e:360});
+    else if(r.t==='ARC')ents.push({t:'ARC',layer,c:[n(r,10),n(r,20)],r:n(r,40),s:n(r,50),e:n(r,51)});
+    else if(r.t==='TEXT')ents.push({t:'TEXT',layer,p:[n(r,10),n(r,20)],h:n(r,40)||10,s:dec(g(r,1,'')),rot:n(r,50)});
+  }
+  return {layers,ents};
+}
+let DATA=null,cur={sec:null,dxf:null},view={cx:0,cy:0,s:1},hidden=new Set(),hl=null;
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+function bbox(d){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;const add=p=>{x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])};
+  for(const e of d.ents){if(e.t==='PL')e.pts.forEach(add);else if(e.t==='LINE'){add(e.a);add(e.b)}else if(e.c){add([e.c[0]-e.r,e.c[1]-e.r]);add([e.c[0]+e.r,e.c[1]+e.r])}else if(e.p)add(e.p)}
+  return [x0,y0,x1,y1]}
+function fit(box){const r=cv.getBoundingClientRect(),[x0,y0,x1,y1]=box||bbox(cur.dxf);const w=Math.max(x1-x0,1),h=Math.max(y1-y0,1);
+  view.s=Math.min(r.width/w,r.height/h)*0.88;view.cx=(x0+x1)/2;view.cy=(y0+y1)/2;draw()}
+function resize(){const r=cv.getBoundingClientRect(),k=devicePixelRatio||1;cv.width=r.width*k;cv.height=r.height*k;draw()}
+function colorOf(l){const c=cur.dxf.layers[l];return ACI[c?c.color:7]||'#222'}
+function draw(){
+  const k=devicePixelRatio||1,W=cv.width/k,H=cv.height/k;ctx.setTransform(k,0,0,k,0,0);ctx.clearRect(0,0,W,H);if(!cur.dxf)return;
+  const X=x=>(x-view.cx)*view.s+W/2,Y=y=>H/2-(y-view.cy)*view.s;
+  ctx.lineWidth=1.3;ctx.lineJoin='round';
+  for(const e of cur.dxf.ents){if(hidden.has(e.layer))continue;ctx.strokeStyle=ctx.fillStyle=colorOf(e.layer);
+    if(e.t==='PL'){ctx.beginPath();e.pts.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1])));if(e.closed)ctx.closePath();
+      if(e.closed&&e.pts.length<=3&&/^DIM/.test(e.layer))ctx.fill();else ctx.stroke()}
+    else if(e.t==='LINE'){ctx.beginPath();ctx.moveTo(X(e.a[0]),Y(e.a[1]));ctx.lineTo(X(e.b[0]),Y(e.b[1]));ctx.stroke()}
+    else if(e.t==='CIRCLE'||e.t==='ARC'){ctx.beginPath();const a0=-e.s*Math.PI/180,a1=-e.e*Math.PI/180;ctx.arc(X(e.c[0]),Y(e.c[1]),e.r*view.s,e.t==='CIRCLE'?0:a1,e.t==='CIRCLE'?7:a0);ctx.stroke()}
+    else if(e.t==='TEXT'){ctx.save();ctx.translate(X(e.p[0]),Y(e.p[1]));ctx.rotate(-e.rot*Math.PI/180);ctx.font=Math.max(e.h*view.s,3)+'px system-ui,"PingFang SC","Microsoft YaHei",sans-serif';ctx.textBaseline='alphabetic';ctx.fillText(e.s,0,0);ctx.restore()}}
+  if(hl){ctx.save();ctx.strokeStyle='#ff6d00';ctx.fillStyle='rgba(255,109,0,.12)';ctx.lineWidth=2;
+    const xs=hl.map(p=>X(p[0])),ys=hl.map(p=>Y(p[1])),pad=14,x0=Math.min(...xs)-pad,y0=Math.min(...ys)-pad,w=Math.max(...xs)-Math.min(...xs)+2*pad,h=Math.max(...ys)-Math.min(...ys)+2*pad;
+    ctx.fillRect(x0,y0,w,h);ctx.strokeRect(x0,y0,w,h);hl.forEach((p,i)=>{ctx.beginPath();ctx.arc(X(p[0]),Y(p[1]),4,0,7);ctx.fillStyle='#ff6d00';ctx.fill()});ctx.restore()}
+}
+function buildLayers(){const box=document.getElementById('layers');box.innerHTML='';
+  const names=[...new Set(cur.dxf.ents.map(e=>e.layer))].sort();
+  for(const n of names){const l=document.createElement('label');l.innerHTML=`<input type="checkbox" checked><i style="background:${colorOf(n)}"></i>${n}`;
+    l.querySelector('input').onchange=ev=>{ev.target.checked?hidden.delete(n):hidden.add(n);draw()};box.appendChild(l)}}
+async function loadSection(s){cur.sec=s;hl=null;hidden=new Set();
+  const t=await (await fetch('data/'+s.file)).text();cur.dxf=parseDXF(t);cur.raw=t;
+  document.getElementById('stitle').textContent=s.title;document.getElementById('splane').textContent='· '+s.plane;document.getElementById('sdesc').textContent=s.desc;
+  buildLayers();buildTable(s);fit();[...document.querySelectorAll('#tabs button')].forEach(b=>b.classList.toggle('on',b.dataset.id===s.id))}
+function buildTable(s){const tb=document.querySelector('#tbl tbody');tb.innerHTML='';
+  for(const it of s.items){const tr=document.createElement('tr');tr.className='it';
+    tr.innerHTML=`<td><strong>${it.code}</strong></td><td>${it.name_cn}<div class="mute">${it.name_en}</div><div class="mute">${it.definition}</div></td><td>${it.value} ${it.unit}</td><td>${it.std}</td><td>${it.drives.map(d=>`<code>${d}</code>`).join(' ')}</td><td>${it.envelope}</td><td><code>${it.dts_key}</code><div class="mute">目标: ${it.dts_target??'（待填）'}</div></td><td><span class="tag ${it.status==='ok'?'':'v'}">${it.status}</span></td>`;
+    tr.onclick=()=>{[...tb.children].forEach(x=>x.classList.remove('sel'));tr.classList.add('sel');hl=it.anchors;
+      const xs=it.anchors.map(p=>p[0]),ys=it.anchors.map(p=>p[1]);const sp=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys)),pd=Math.max(60,sp*0.6);fit([Math.min(...xs)-pd,Math.min(...ys)-pd,Math.max(...xs)+pd,Math.max(...ys)+pd])};
+    tb.appendChild(tr)}}
+function loadUserDXF(txt,name){cur.sec={id:'U',title:'用户文件: '+name,file:'',plane:'',desc:'',items:[]};cur.dxf=parseDXF(txt);cur.raw=txt;hl=null;hidden=new Set();
+  document.getElementById('stitle').textContent=cur.sec.title;document.getElementById('splane').textContent='';document.getElementById('sdesc').textContent='';
+  buildLayers();buildTable(cur.sec);fit();[...document.querySelectorAll('#tabs button')].forEach(b=>b.classList.remove('on'))}
+// pan / zoom
+let drag=null;
+cv.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'};
+cv.onpointerup=()=>{drag=null;cv.style.cursor='grab'};
+cv.onpointermove=e=>{const r=cv.getBoundingClientRect();
+  if(drag){view.cx-=(e.clientX-drag.x)/view.s;view.cy+=(e.clientY-drag.y)/view.s;drag={x:e.clientX,y:e.clientY};draw()}
+  document.getElementById('coord').textContent=`x=${((e.clientX-r.left-r.width/2)/view.s+view.cx).toFixed(1)}  y=${((r.height/2-(e.clientY-r.top))/view.s+view.cy).toFixed(1)} mm`};
+cv.onwheel=e=>{e.preventDefault();const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top,f=e.deltaY<0?1.15:1/1.15;
+  const wx=(mx-r.width/2)/view.s+view.cx,wy=(r.height/2-my)/view.s+view.cy;view.s*=f;view.cx=wx-(mx-r.width/2)/view.s;view.cy=wy-(r.height/2-my)/view.s;draw()};
+cv.ondragover=e=>e.preventDefault();cv.ondrop=e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f)f.text().then(t=>loadUserDXF(t,f.name))};
+document.getElementById('file').onchange=e=>{const f=e.target.files[0];if(f)f.text().then(t=>loadUserDXF(t,f.name))};
+document.getElementById('fit').onclick=()=>fit();
+document.getElementById('dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([cur.raw],{type:'application/dxf'}));a.download=cur.sec.file||'section.dxf';a.click()};
+document.getElementById('csv').onclick=()=>{const rows=[['section','code','std','name_cn','name_en','value','unit','drives_layers','envelope','dts_key','dts_target','status']];
+  for(const s of DATA.sections)for(const i of s.items)rows.push([s.id,i.code,i.std,i.name_cn,i.name_en,i.value,i.unit,i.drives.join('|'),i.envelope,i.dts_key,i.dts_target??'',i.status]);
+  const csv='﻿'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='dts_alignment.csv';a.click()};
+addEventListener('resize',resize);
+const REFS=[
+ ['SAE J182','三维参考系（X/Y/Z 方向、零点）。J1100 注明除地面相关尺寸外，其他尺寸均在该参考系下量取。','用于确定截面平面的轴向与符号约定：X 向后为正、Z 向上。'],
+ ['SAE J1100','机动车尺寸。2009-11 版为当前版，术语使用 DLO（采光口）；2009 版修订了 W27、W35、H35 的 X 平面截面定义。','乘员舱空间尺寸 → 顶盖/侧围/门槛/车门截面的包络边界。'],
+ ['白车身结构断面','顶盖边梁、A/B/C 柱、门槛、地板纵梁等的钣金截面；控制截面惯性矩、焊接/搭接、腔体、结构胶。','由 J1100 的布置尺寸给出外/内包络，结构截面在包络内设计。'],
+ ['内外饰/密封条断面','顶棚、门内饰、门槛饰板；门框/玻璃导槽/车身密封条的自由态与压缩态。','关注压缩量与压缩率、间隙(Gap)、面差(Flush)、水路与风噪路径。'],
+ ['DTS','此处把 DTS 当作“设计目标规格”：每个尺寸一个键(dts_key)，目标值与公差由贵司 DTS 填入。','semantics.json 的 dts_target 字段留空；表格“DTS 键”列即对齐接口。']];
+function buildRefs(){document.getElementById('refs').innerHTML='<strong>规范与断面对应关系</strong><table class="ref"><tbody>'+REFS.map(r=>`<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td class="mute">${r[2]}</td></tr>`).join('')+'</tbody></table>'}
+function buildPending(){document.getElementById('pend').innerHTML='<strong>本组示意断面画不出来的 J1100 项</strong><table><tbody>'+DATA.pending.map(i=>`<tr><td><strong>${i.code}</strong></td><td>${i.name_cn}<div class="mute">${i.definition}</div></td><td>${i.drives.map(d=>`<code>${d}</code>`).join(' ')}<div class="mute">${i.envelope}</div></td><td><code>${i.dts_key}</code></td><td><span class="tag v">${i.status}</span></td></tr>`).join('')+'</tbody></table>'}
+(async()=>{DATA=await (await fetch('data/semantics.json')).json();
+  const nav=document.getElementById('tabs');for(const s of DATA.sections){const b=document.createElement('button');b.textContent=s.id+'-'+s.id;b.dataset.id=s.id;b.onclick=()=>loadSection(s);nav.appendChild(b)}
+  buildRefs();buildPending();resize();loadSection(DATA.sections[0])})();
+</script>
+</body>
+</html>
