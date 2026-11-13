@@ -1,17 +1,74 @@
 {
  "vehicle": "2012 Toyota Camry (CCSA/GMU FE model v5a)",
  "source": "Center for Collision Safety and Analysis (CCSA), George Mason University; sponsored by FHWA. https://www.ccsa.gmu.edu/models/2012-toyota-camry",
- "axis_sign": [-1, 1, 1],
+ "axis_sign": [
+  -1,
+  1,
+  1
+ ],
  "refs": {
-  "SgRP": {"x": 2370, "y": 375, "z": 530, "status": "estimate", "note": "估算：由驾驶员座椅靠背铰接支架位置推算（铰点前约130、上约80）。模型无坐垫泡沫，请在 A 截面拖动修正。"},
-  "AHP":  {"x": 1600, "y": 375, "z": 232, "status": "estimate", "note": "估算：油门踏板后约 230 mm 处的地板上表面。模型无地毯（通常再高 15–20 mm），请拖动修正。"}
+  "SgRP": {
+   "y": 375,
+   "status": "estimate",
+   "estimate_from": {
+    "cushion": [
+     2005050
+    ],
+    "back": [
+     2005049
+    ],
+    "back_dz": 100,
+    "fwd": 135,
+    "dz": 60
+   },
+   "note": "估算：靠背前表面（坐垫后端上方 100 mm 处）向前 135 mm，坐垫自由表面上方 60 mm。请在 A 截面拖动修正。"
+  },
+  "SgRP2": {
+   "y": 375,
+   "status": "estimate",
+   "estimate_from": {
+    "cushion": [
+     2001015
+    ],
+    "back": [
+     2001024,
+     2001025
+    ],
+    "back_dz": 100,
+    "fwd": 135,
+    "dz": 60
+   },
+   "note": "第二排外侧座位，估算方法同前排。Y 取 375（假设与前排同一纵平面）。"
+  },
+  "AHP": {
+   "x": 1600,
+   "y": 375,
+   "z": 232,
+   "status": "estimate",
+   "note": "估算：油门踏板后约 230 mm 处的地板上表面。模型无地毯（通常再高 15–20 mm），请拖动修正。"
+  }
  },
  "sections": [
-  {"id": "A_Y375", "axis": "y", "value": 375, "title": "A-A 驾驶员中心纵截面",
-   "desc": "Y=375：方向盘中心 Y≈362 与驾驶员座椅中心 Y≈384 之间。用于 H30、L53、H61 及顶盖/地板/前围的纵向包络。"},
-  {"id": "B_X2370", "axis": "x", "value": 2370, "title": "B-B 前排 SgRP 横截面",
-   "desc": "X=2370（估算 SgRP 所在 X 平面）：顶盖边梁、B柱附近侧围、车门/门内饰、门槛、座椅。用于肩部/肘部空间 W3/W31 与顶盖边梁、门槛包络。"},
-  {"id": "C_X2000", "axis": "x", "value": 2000, "title": "C-C 前门中部横截面",
-   "desc": "X=2000：前门中部，门槛、车门内外板、门框、玻璃、顶盖边梁。用于门槛高度、门-侧围间隙/面差与玻璃位置。"}
+  {
+   "id": "A_Y375",
+   "axis": "y",
+   "value": 375,
+   "title": "A-A 驾驶员中心纵截面",
+   "desc": "Y=375：方向盘中心 Y≈362 与驾驶员座椅中心 Y≈384 之间。前后排座椅（含泡沫实体）、地板、前围、顶盖。用于 H30、L53、H61、L50-2 及前后排腿部空间。"
+  },
+  {
+   "id": "B_SGRP",
+   "axis": "x",
+   "value": 2290,
+   "title": "B-B 前排 SgRP 横截面",
+   "desc": "X=2290（估算前排 SgRP 所在 X 平面）：顶盖边梁、侧围、车门/门内饰、门槛、座椅。用于肩部/肘部空间 W3/W31 与顶盖边梁、门槛包络。"
+  },
+  {
+   "id": "C_X2000",
+   "axis": "x",
+   "value": 2000,
+   "title": "C-C 前门中部横截面",
+   "desc": "X=2000：前门中部，门槛、车门内外板、门框、玻璃、顶盖边梁。用于门槛高度、门-侧围间隙/面差与玻璃位置。"
+  }
  ]
 }

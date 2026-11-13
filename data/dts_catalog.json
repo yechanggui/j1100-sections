@@ -12,69 +12,502 @@
   "envelope": "对断面包络的含义"
  },
  "items": [
-  {"key": "PKG.SEAT.H30", "category": "PKG", "std": "SAE J1100 H30", "name_cn": "SgRP 到踵点垂直高度", "name_en": "SgRP to heel point, vertical",
-   "section": "A_Y375", "method": "auto:H30", "target": {"min": 240, "max": 300}, "unit": "mm",
-   "definition": "SgRP 与 AHP 的 Z 向距离。", "drives": ["BIW-FLOOR", "TRIM-CARPET", "SEAT"],
-   "envelope": "决定前地板高度、座椅安装点高度；与 H61 共同决定车高。", "verify": false},
-  {"key": "PKG.SEAT.L53", "category": "PKG", "std": "SAE J1100 L53", "name_cn": "SgRP 到踵点水平距离", "name_en": "SgRP to heel point, horizontal",
-   "section": "A_Y375", "method": "auto:L53", "target": {"min": 780, "max": 950}, "unit": "mm",
-   "definition": "SgRP 与 AHP 的 X 向距离。", "drives": ["BIW-DASH", "BIW-FLOOR", "PEDAL", "SEAT"],
-   "envelope": "决定前围/踏板区位置，约束前围-地板过渡断面。", "verify": false},
-  {"key": "PKG.HEAD.H61", "category": "PKG", "std": "SAE J1100 H61", "name_cn": "有效头部空间（前排）", "name_en": "Effective head room, front",
-   "section": "A_Y375", "method": "auto:H61", "params": {"angle_deg": 8, "add_mm": 102}, "target": {"min": 960}, "unit": "mm",
-   "definition": "自 SgRP 沿垂线后倾 8° 的直线量至顶棚内表面，再加 102 mm。本模型无顶棚，射线命中顶盖结构，需在页面上输入顶棚厚度扣除。", "drives": ["BIW-ROOF", "TRIM-HEADLINER"],
-   "envelope": "顶盖外板→顶盖横梁/内板→顶棚的垂向上边界。", "verify": true},
-  {"key": "PKG.WIDTH.W3", "category": "PKG", "std": "SAE J1100 W3", "name_cn": "肩部空间（前排）", "name_en": "Shoulder room, front",
-   "section": "B_X2370", "method": "auto:WIDTH", "params": {"dz_from_sgrp": 254, "hit_groups": ["TRIM", "DOOR", "GLASS"]}, "target": {"min": 1400}, "unit": "mm",
-   "definition": "简化：在 SgRP 上方 254 mm 的水平线上，从 Y=0 向左右量到第一个内饰/门/玻璃表面的总宽。J1100 原文的测量区间定义需核对。", "drives": ["TRIM-DOOR", "DOOR-INNER", "GLASS-SIDE"],
-   "envelope": "约束门内饰、门内板与侧窗玻璃的横向包络。", "verify": true},
-  {"key": "PKG.WIDTH.W31", "category": "PKG", "std": "SAE J1100 W31", "name_cn": "肘部空间（前排）", "name_en": "Elbow room, front",
-   "section": "B_X2370", "method": "auto:WIDTH", "params": {"dz_from_sgrp": 180, "hit_groups": ["TRIM", "DOOR"]}, "target": {"min": 1420}, "unit": "mm",
-   "definition": "简化：在 SgRP 上方 180 mm（扶手区）的水平线上量左右门内饰总宽。高度取值需核对 J1100。", "drives": ["TRIM-DOOR", "DOOR-INNER"],
-   "envelope": "约束扶手与门内饰型面。", "verify": true},
-  {"key": "PKG.ENTRY.SILL_H", "category": "PKG", "std": "OEM", "name_cn": "门槛上缘离地高度", "name_en": "Sill top height above ground",
-   "section": "C_X2000", "method": "auto:MAXZ", "params": {"groups": ["BIW-SILL"]}, "target": {"max": 420}, "unit": "mm",
-   "definition": "门槛组零件在本截面的最高点 Z（模型 Z=0 为轮胎接地面）。地面相关尺寸按 J1100 约定沿地面法向。", "drives": ["BIW-SILL"],
-   "envelope": "上下车跨越高度；决定门槛断面上边界。", "verify": false},
-  {"key": "PKG.HEAD.SIDE_CLR", "category": "PKG", "std": "OEM", "name_cn": "头部侧向间隙（至顶盖边梁内饰）", "name_en": "Head-to-side-rail clearance",
-   "section": "B_X2370", "method": "manual", "target": {"min": 80}, "unit": "mm",
-   "definition": "人体头部包络到顶盖边梁（或其内饰）的最小距离。手动点两点测量。", "drives": ["BIW-ROOF", "TRIM-PILLAR"],
-   "envelope": "约束顶盖边梁断面的内侧边界与侧气帘布置空间。", "verify": false},
-  {"key": "BIW.ROOFRAIL.FLANGE_W", "category": "BIW", "std": "OEM", "name_cn": "顶盖边梁焊接翻边宽度", "name_en": "Roof rail weld flange width",
-   "section": "B_X2370", "method": "manual", "target": {"min": 15}, "unit": "mm",
-   "definition": "电阻点焊翻边的有效平直长度。", "drives": ["BIW-ROOF"],
-   "envelope": "决定边梁腔体与玻璃/密封条搭接面。", "verify": false},
-  {"key": "BIW.SILL.SECTION_H", "category": "BIW", "std": "OEM", "name_cn": "门槛断面高度", "name_en": "Sill section height",
-   "section": "C_X2000", "method": "manual", "target": {"min": 140}, "unit": "mm",
-   "definition": "门槛内外板组成的闭口腔体在 Z 向的高度。", "drives": ["BIW-SILL"],
-   "envelope": "决定侧碰/柱碰刚度与上下车高度的平衡。", "verify": false},
-  {"key": "BIW.SILL.SECTION_W", "category": "BIW", "std": "OEM", "name_cn": "门槛断面宽度", "name_en": "Sill section width",
-   "section": "C_X2000", "method": "manual", "target": {"min": 100}, "unit": "mm",
-   "definition": "门槛闭口腔体在 Y 向的宽度。", "drives": ["BIW-SILL"],
-   "envelope": "约束门槛与车门下部、地板的横向布置。", "verify": false},
-  {"key": "BIW.ROOF.BOW_CLR", "category": "BIW", "std": "OEM", "name_cn": "顶盖外板到顶盖横梁间隙", "name_en": "Roof skin to roof bow clearance",
-   "section": "A_Y375", "method": "manual", "target": {"nominal": 3, "tol": [-1, 1]}, "unit": "mm",
-   "definition": "顶盖外板与横梁间的减振胶/膨胀胶厚度。", "drives": ["BIW-ROOF"],
-   "envelope": "顶盖垂向结构包络。", "verify": false},
-  {"key": "GF.DOOR_FRT.SILL.GAP", "category": "GF", "std": "OEM", "name_cn": "前门-门槛间隙", "name_en": "Front door to sill gap",
-   "section": "C_X2000", "method": "manual", "target": {"nominal": 5.0, "tol": [-1.0, 1.0]}, "unit": "mm",
-   "definition": "前门下缘与门槛外板之间垂直于分缝线的间隙。", "drives": ["DOOR-OUTER", "BIW-SILL"],
-   "envelope": "外观分缝线；决定门下缘与门槛外板的相对位置。", "verify": false},
-  {"key": "GF.DOOR_FRT.SILL.FLUSH", "category": "GF", "std": "OEM", "name_cn": "前门-门槛面差", "name_en": "Front door to sill flush",
-   "section": "C_X2000", "method": "manual", "target": {"nominal": 0, "tol": [-1.0, 1.0]}, "unit": "mm",
-   "definition": "门外板与门槛外板在面法向的高差。", "drives": ["DOOR-OUTER", "BIW-SILL"],
-   "envelope": "外观面连续性。", "verify": false},
-  {"key": "SEAL.DOOR_FRT.PRIMARY.COMP", "category": "SEAL", "std": "OEM", "name_cn": "前门主密封压缩量", "name_en": "Front door primary seal compression",
-   "section": "C_X2000", "method": "manual", "target": {"min": 6, "max": 10}, "unit": "mm",
-   "definition": "关门状态下密封条截面的压缩量。本模型不含密封条，需补建后测量。", "drives": ["SEAL", "DOOR-INNER", "BIW-SILL"],
-   "envelope": "密封条在门内板与门槛翻边之间的安装空间。", "verify": false, "model_missing": true},
-  {"key": "CLS.GLASS_FRT.RUN_ENGAGE", "category": "CLS", "std": "OEM", "name_cn": "前门玻璃导槽嵌入量", "name_en": "Front glass run engagement",
-   "section": "C_X2000", "method": "manual", "target": {"min": 8}, "unit": "mm",
-   "definition": "玻璃上缘插入门框导槽的深度。", "drives": ["GLASS-SIDE", "DOOR-FRAME", "SEAL"],
-   "envelope": "门框断面与侧窗采光口 DLO 上缘。", "verify": false},
-  {"key": "TRIM.HEADLINER.THK", "category": "TRIM", "std": "OEM", "name_cn": "顶棚到顶盖结构空间", "name_en": "Headliner package space",
-   "section": "A_Y375", "method": "manual", "target": {"min": 15, "max": 30}, "unit": "mm",
-   "definition": "顶棚（含缓冲）下表面到顶盖横梁/内板的空间。本模型不含顶棚。", "drives": ["TRIM-HEADLINER", "BIW-ROOF"],
-   "envelope": "与 H61 联动：顶棚空间每增加 1 mm，有效头部空间减少 1 mm。", "verify": false, "model_missing": true}
+  {
+   "key": "PKG.SEAT.H30",
+   "category": "PKG",
+   "std": "SAE J1100 H30",
+   "name_cn": "SgRP 到踵点垂直高度",
+   "name_en": "SgRP to heel point, vertical",
+   "section": "A_Y375",
+   "method": "auto:H30",
+   "target": {
+    "min": 240,
+    "max": 300
+   },
+   "unit": "mm",
+   "definition": "SgRP 与 AHP 的 Z 向距离。",
+   "drives": [
+    "BIW-FLOOR",
+    "TRIM-CARPET",
+    "SEAT"
+   ],
+   "envelope": "决定前地板高度、座椅安装点高度；与 H61 共同决定车高。",
+   "verify": false
+  },
+  {
+   "key": "PKG.SEAT.L53",
+   "category": "PKG",
+   "std": "SAE J1100 L53",
+   "name_cn": "SgRP 到踵点水平距离",
+   "name_en": "SgRP to heel point, horizontal",
+   "section": "A_Y375",
+   "method": "auto:L53",
+   "target": {
+    "min": 780,
+    "max": 950
+   },
+   "unit": "mm",
+   "definition": "SgRP 与 AHP 的 X 向距离。",
+   "drives": [
+    "BIW-DASH",
+    "BIW-FLOOR",
+    "PEDAL",
+    "SEAT"
+   ],
+   "envelope": "决定前围/踏板区位置，约束前围-地板过渡断面。",
+   "verify": false
+  },
+  {
+   "key": "PKG.HEAD.H61",
+   "category": "PKG",
+   "std": "SAE J1100 H61",
+   "name_cn": "有效头部空间（前排）",
+   "name_en": "Effective head room, front",
+   "section": "A_Y375",
+   "method": "auto:H61",
+   "params": {
+    "angle_deg": 8,
+    "add_mm": 102
+   },
+   "target": {
+    "min": 960
+   },
+   "unit": "mm",
+   "definition": "自 SgRP 沿垂线后倾 8° 的直线量至顶棚内表面，再加 102 mm。本模型无顶棚，射线命中顶盖结构，需在页面上输入顶棚厚度扣除。",
+   "drives": [
+    "BIW-ROOF",
+    "TRIM-HEADLINER"
+   ],
+   "envelope": "顶盖外板→顶盖横梁/内板→顶棚的垂向上边界。",
+   "verify": true
+  },
+  {
+   "key": "PKG.SEAT.L50_2",
+   "category": "PKG",
+   "std": "SAE J1100 L50-2",
+   "name_cn": "前排-第二排 SgRP 间距（耦合距离）",
+   "name_en": "SgRP couple distance, row 1 to row 2",
+   "section": "A_Y375",
+   "method": "auto:DX",
+   "params": {
+    "a": "SgRP",
+    "b": "SgRP2"
+   },
+   "target": {
+    "min": 850,
+    "max": 950
+   },
+   "unit": "mm",
+   "definition": "前排 SgRP 与第二排 SgRP 的 X 向距离。它决定后排可用的纵向空间，但不等于腿部空间。",
+   "drives": [
+    "SEAT",
+    "BIW-FLOOR",
+    "BIW-PILLAR"
+   ],
+   "envelope": "决定 B 柱/后门开口位置、后地板踏脚区与后座椅安装点。",
+   "verify": true
+  },
+  {
+   "key": "PKG.LEG.L34",
+   "category": "PKG",
+   "std": "SAE J1100 L34",
+   "name_cn": "前排最大有效腿部空间",
+   "name_en": "Max effective leg room, accelerator",
+   "section": "A_Y375",
+   "method": "manual",
+   "target": {
+    "min": 1050
+   },
+   "unit": "mm",
+   "definition": "J1100 按 HPM 腿部（踝点→膝→H 点）路径定义，不是两点直线；本站只能手动量近似值，需用 HPM 或 J1100 原文核对。",
+   "drives": [
+    "BIW-DASH",
+    "PEDAL",
+    "TRIM-IP",
+    "SEAT"
+   ],
+   "envelope": "前围、踏板区与仪表板下沿的纵向包络。",
+   "verify": true
+  },
+  {
+   "key": "PKG.LEG.L51_2",
+   "category": "PKG",
+   "std": "SAE J1100 L51-2",
+   "name_cn": "第二排有效腿部空间",
+   "name_en": "Effective leg room, second row",
+   "section": "A_Y375",
+   "method": "manual",
+   "target": {
+    "min": 880
+   },
+   "unit": "mm",
+   "definition": "第二排 HPM 腿部空间测量（J1100 的 L51-x）。需 HPM 腿部姿态，本站只能手动量近似值。",
+   "drives": [
+    "SEAT",
+    "BIW-FLOOR"
+   ],
+   "envelope": "前排座椅靠背后表面与后地板踏脚区的包络。",
+   "verify": true
+  },
+  {
+   "key": "PKG.KNEE.L48_2",
+   "category": "PKG",
+   "std": "SAE J1100 L48-2",
+   "name_cn": "第二排膝部间隙",
+   "name_en": "Knee clearance, second row",
+   "section": "A_Y375",
+   "method": "manual",
+   "target": {
+    "min": 40
+   },
+   "unit": "mm",
+   "definition": "第二排乘员膝部到前排座椅靠背背面的最小距离（J1100 的 L48-x）。手动点两点。",
+   "drives": [
+    "SEAT"
+   ],
+   "envelope": "约束前排座椅靠背背板厚度与位置。",
+   "verify": true
+  },
+  {
+   "key": "EXT.LENGTH",
+   "category": "PKG",
+   "std": "SAE J1100 L103",
+   "name_cn": "整车长度",
+   "name_en": "Vehicle overall length",
+   "section": "A_Y375",
+   "method": "auto:BBOX",
+   "params": {
+    "axis": "x"
+   },
+   "target": {
+    "min": 4700,
+    "max": 4900
+   },
+   "unit": "mm",
+   "definition": "整车模型 X 向最大外廓（三维包围盒，不只是本截面）。",
+   "drives": [
+    "BIW",
+    "OTHER"
+   ],
+   "envelope": "前后保险杠外廓。",
+   "verify": true
+  },
+  {
+   "key": "EXT.HEIGHT",
+   "category": "PKG",
+   "std": "SAE J1100 H101",
+   "name_cn": "整车高度",
+   "name_en": "Vehicle overall height",
+   "section": "A_Y375",
+   "method": "auto:BBOX",
+   "params": {
+    "axis": "z"
+   },
+   "target": {
+    "min": 1400,
+    "max": 1500
+   },
+   "unit": "mm",
+   "definition": "模型最高点到 Z=0（轮胎最低点）的距离，为模型姿态下的值，不是规定载荷状态。",
+   "drives": [
+    "BIW-ROOF"
+   ],
+   "envelope": "顶盖最高点。",
+   "verify": true
+  },
+  {
+   "key": "PKG.WIDTH.W3",
+   "category": "PKG",
+   "std": "SAE J1100 W3",
+   "name_cn": "肩部空间（前排）",
+   "name_en": "Shoulder room, front",
+   "section": "B_SGRP",
+   "method": "auto:WIDTH",
+   "params": {
+    "dz_from_sgrp": 254,
+    "hit_groups": [
+     "TRIM",
+     "DOOR",
+     "GLASS"
+    ]
+   },
+   "target": {
+    "min": 1400
+   },
+   "unit": "mm",
+   "definition": "简化：在 SgRP 上方 254 mm 的水平线上，从 Y=0 向左右量到第一个内饰/门/玻璃表面的总宽。J1100 原文的测量区间定义需核对。",
+   "drives": [
+    "TRIM-DOOR",
+    "DOOR-INNER",
+    "GLASS-SIDE"
+   ],
+   "envelope": "约束门内饰、门内板与侧窗玻璃的横向包络。",
+   "verify": true
+  },
+  {
+   "key": "PKG.WIDTH.W31",
+   "category": "PKG",
+   "std": "SAE J1100 W31",
+   "name_cn": "肘部空间（前排）",
+   "name_en": "Elbow room, front",
+   "section": "B_SGRP",
+   "method": "auto:WIDTH",
+   "params": {
+    "dz_from_sgrp": 180,
+    "hit_groups": [
+     "TRIM",
+     "DOOR"
+    ]
+   },
+   "target": {
+    "min": 1420
+   },
+   "unit": "mm",
+   "definition": "简化：在 SgRP 上方 180 mm（扶手区）的水平线上量左右门内饰总宽。高度取值需核对 J1100。",
+   "drives": [
+    "TRIM-DOOR",
+    "DOOR-INNER"
+   ],
+   "envelope": "约束扶手与门内饰型面。",
+   "verify": true
+  },
+  {
+   "key": "PKG.ENTRY.SILL_H",
+   "category": "PKG",
+   "std": "OEM",
+   "name_cn": "门槛上缘离地高度",
+   "name_en": "Sill top height above ground",
+   "section": "C_X2000",
+   "method": "auto:MAXZ",
+   "params": {
+    "groups": [
+     "BIW-SILL"
+    ]
+   },
+   "target": {
+    "max": 420
+   },
+   "unit": "mm",
+   "definition": "门槛组零件在本截面的最高点 Z（模型 Z=0 为轮胎接地面）。地面相关尺寸按 J1100 约定沿地面法向。",
+   "drives": [
+    "BIW-SILL"
+   ],
+   "envelope": "上下车跨越高度；决定门槛断面上边界。",
+   "verify": false
+  },
+  {
+   "key": "PKG.HEAD.SIDE_CLR",
+   "category": "PKG",
+   "std": "OEM",
+   "name_cn": "头部侧向间隙（至顶盖边梁内饰）",
+   "name_en": "Head-to-side-rail clearance",
+   "section": "B_SGRP",
+   "method": "manual",
+   "target": {
+    "min": 80
+   },
+   "unit": "mm",
+   "definition": "人体头部包络到顶盖边梁（或其内饰）的最小距离。手动点两点测量。",
+   "drives": [
+    "BIW-ROOF",
+    "TRIM-PILLAR"
+   ],
+   "envelope": "约束顶盖边梁断面的内侧边界与侧气帘布置空间。",
+   "verify": false
+  },
+  {
+   "key": "BIW.ROOFRAIL.FLANGE_W",
+   "category": "BIW",
+   "std": "OEM",
+   "name_cn": "顶盖边梁焊接翻边宽度",
+   "name_en": "Roof rail weld flange width",
+   "section": "B_SGRP",
+   "method": "manual",
+   "target": {
+    "min": 15
+   },
+   "unit": "mm",
+   "definition": "电阻点焊翻边的有效平直长度。",
+   "drives": [
+    "BIW-ROOF"
+   ],
+   "envelope": "决定边梁腔体与玻璃/密封条搭接面。",
+   "verify": false
+  },
+  {
+   "key": "BIW.SILL.SECTION_H",
+   "category": "BIW",
+   "std": "OEM",
+   "name_cn": "门槛断面高度",
+   "name_en": "Sill section height",
+   "section": "C_X2000",
+   "method": "manual",
+   "target": {
+    "min": 140
+   },
+   "unit": "mm",
+   "definition": "门槛内外板组成的闭口腔体在 Z 向的高度。",
+   "drives": [
+    "BIW-SILL"
+   ],
+   "envelope": "决定侧碰/柱碰刚度与上下车高度的平衡。",
+   "verify": false
+  },
+  {
+   "key": "BIW.SILL.SECTION_W",
+   "category": "BIW",
+   "std": "OEM",
+   "name_cn": "门槛断面宽度",
+   "name_en": "Sill section width",
+   "section": "C_X2000",
+   "method": "manual",
+   "target": {
+    "min": 100
+   },
+   "unit": "mm",
+   "definition": "门槛闭口腔体在 Y 向的宽度。",
+   "drives": [
+    "BIW-SILL"
+   ],
+   "envelope": "约束门槛与车门下部、地板的横向布置。",
+   "verify": false
+  },
+  {
+   "key": "BIW.ROOF.BOW_CLR",
+   "category": "BIW",
+   "std": "OEM",
+   "name_cn": "顶盖外板到顶盖横梁间隙",
+   "name_en": "Roof skin to roof bow clearance",
+   "section": "A_Y375",
+   "method": "manual",
+   "target": {
+    "nominal": 3,
+    "tol": [
+     -1,
+     1
+    ]
+   },
+   "unit": "mm",
+   "definition": "顶盖外板与横梁间的减振胶/膨胀胶厚度。",
+   "drives": [
+    "BIW-ROOF"
+   ],
+   "envelope": "顶盖垂向结构包络。",
+   "verify": false
+  },
+  {
+   "key": "GF.DOOR_FRT.SILL.GAP",
+   "category": "GF",
+   "std": "OEM",
+   "name_cn": "前门-门槛间隙",
+   "name_en": "Front door to sill gap",
+   "section": "C_X2000",
+   "method": "manual",
+   "target": {
+    "nominal": 5.0,
+    "tol": [
+     -1.0,
+     1.0
+    ]
+   },
+   "unit": "mm",
+   "definition": "前门下缘与门槛外板之间垂直于分缝线的间隙。",
+   "drives": [
+    "DOOR-OUTER",
+    "BIW-SILL"
+   ],
+   "envelope": "外观分缝线；决定门下缘与门槛外板的相对位置。",
+   "verify": false
+  },
+  {
+   "key": "GF.DOOR_FRT.SILL.FLUSH",
+   "category": "GF",
+   "std": "OEM",
+   "name_cn": "前门-门槛面差",
+   "name_en": "Front door to sill flush",
+   "section": "C_X2000",
+   "method": "manual",
+   "target": {
+    "nominal": 0,
+    "tol": [
+     -1.0,
+     1.0
+    ]
+   },
+   "unit": "mm",
+   "definition": "门外板与门槛外板在面法向的高差。",
+   "drives": [
+    "DOOR-OUTER",
+    "BIW-SILL"
+   ],
+   "envelope": "外观面连续性。",
+   "verify": false
+  },
+  {
+   "key": "SEAL.DOOR_FRT.PRIMARY.COMP",
+   "category": "SEAL",
+   "std": "OEM",
+   "name_cn": "前门主密封压缩量",
+   "name_en": "Front door primary seal compression",
+   "section": "C_X2000",
+   "method": "manual",
+   "target": {
+    "min": 6,
+    "max": 10
+   },
+   "unit": "mm",
+   "definition": "关门状态下密封条截面的压缩量。本模型不含密封条，需补建后测量。",
+   "drives": [
+    "SEAL",
+    "DOOR-INNER",
+    "BIW-SILL"
+   ],
+   "envelope": "密封条在门内板与门槛翻边之间的安装空间。",
+   "verify": false,
+   "model_missing": true
+  },
+  {
+   "key": "CLS.GLASS_FRT.RUN_ENGAGE",
+   "category": "CLS",
+   "std": "OEM",
+   "name_cn": "前门玻璃导槽嵌入量",
+   "name_en": "Front glass run engagement",
+   "section": "C_X2000",
+   "method": "manual",
+   "target": {
+    "min": 8
+   },
+   "unit": "mm",
+   "definition": "玻璃上缘插入门框导槽的深度。",
+   "drives": [
+    "GLASS-SIDE",
+    "DOOR-FRAME",
+    "SEAL"
+   ],
+   "envelope": "门框断面与侧窗采光口 DLO 上缘。",
+   "verify": false
+  },
+  {
+   "key": "TRIM.HEADLINER.THK",
+   "category": "TRIM",
+   "std": "OEM",
+   "name_cn": "顶棚到顶盖结构空间",
+   "name_en": "Headliner package space",
+   "section": "A_Y375",
+   "method": "manual",
+   "target": {
+    "min": 15,
+    "max": 30
+   },
+   "unit": "mm",
+   "definition": "顶棚（含缓冲）下表面到顶盖横梁/内板的空间。本模型不含顶棚。",
+   "drives": [
+    "TRIM-HEADLINER",
+    "BIW-ROOF"
+   ],
+   "envelope": "与 H61 联动：顶棚空间每增加 1 mm，有效头部空间减少 1 mm。",
+   "verify": false,
+   "model_missing": true
+  }
  ]
 }

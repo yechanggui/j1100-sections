@@ -45,7 +45,7 @@ code{font-size:11.5px}.hid{display:none}
   <aside class="card side">
     <h3>参考点（SAE J182 坐标，mm）</h3>
     <div id="refs"></div>
-    <p class="mute" style="margin:4px 0 8px">在 A 截面上拖动紫色点，或直接改数值。默认值是估算。</p>
+    <p class="mute" style="margin:4px 0 8px">SgRP=前排 H 点，SgRP2=第二排 H 点，AHP=前排踵点。在 A 截面拖动紫色点或改数值；默认值由座椅泡沫几何估算。</p>
     <h3>顶棚厚度（扣减 H61）</h3>
     <div class="row"><input type="number" id="hl" value="0" step="1"> mm</div>
     <p class="mute" style="margin:0 0 8px">模型没有顶棚，H61 射线打到顶盖结构上。</p>
@@ -104,7 +104,7 @@ function parseDXF(txt){
   return ents;
 }
 
-let VEH,DTS,cur=null,secs={},view={cx:0,cy:0,s:1},hidden=new Set(['OTHER']),sel=null,measuring=null,pick=[],dragRef=null,hover=null;
+let VEH,DTS,cur=null,secs={},view={cx:0,cy:0,s:1},hidden=new Set(),sel=null,measuring=null,pick=[],dragRef=null,hover=null;
 let state={refs:null,hl:0,manual:{}};
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 
@@ -117,7 +117,7 @@ function rayHit(polys,p,d){let best=null;
 const grpIn=(sid,layer)=>secs[sid]&&secs[sid].lay[layer]?secs[sid].lay[layer].group:'OTHER';
 const grpOf=layer=>grpIn(cur.id,layer);
 function polysIn(sid,pred){return secs[sid].ents.filter(e=>pred(grpIn(sid,e.layer)))}
-const R=()=>state.refs;
+const R=()=>state.refs,REFN=['SgRP','SgRP2','AHP'];
 function refUV(name,sid){const s=VEH.sections.find(x=>x.id===sid),r=R()[name];return s.axis==='y'?[r.x,r.z]:[r.y,r.z]}
 
 // ---------- measurements ----------
@@ -127,6 +127,10 @@ function compute(item){
   const S=R().SgRP,A=R().AHP;
   if(m==='auto:H30')return{value:S.z-A.z,geom:{a:[S.x,S.z],b:[S.x,A.z],ext:[[A.x,A.z],[S.x,A.z]]}};
   if(m==='auto:L53')return{value:Math.abs(S.x-A.x),geom:{a:[A.x,S.z],b:[S.x,S.z],ext:[[A.x,A.z],[A.x,S.z]]}};
+  if(m==='auto:DX'){const a=R()[P.a],b=R()[P.b];return{value:Math.abs(b.x-a.x),geom:{a:[a.x,Math.max(a.z,b.z)+150],b:[b.x,Math.max(a.z,b.z)+150],ext:[[a.x,a.z],[a.x,Math.max(a.z,b.z)+150]],ext2:[[b.x,b.z],[b.x,Math.max(a.z,b.z)+150]]}}}
+  if(m==='auto:BBOX'){const lo=VEH.bbox.min,hi=VEH.bbox.max;
+    if(P.axis==='x')return{value:hi[0]-lo[0],geom:{a:[lo[0],-120],b:[hi[0],-120]}};
+    return{value:hi[2]-lo[2],geom:{a:[hi[0]+120,0],b:[hi[0]+120,hi[2]]}}}
   if(!secs[item.section])return null;
   if(m==='auto:H61'){const a=(P.angle_deg||8)*Math.PI/180,d=[Math.sin(a),Math.cos(a)];   // rearward = +X in J182
     const h=rayHit(polysIn(item.section,g=>g.startsWith('BIW-ROOF')||g==='TRIM-HEADLINER'),[S.x,S.z],d);if(!h)return null;
@@ -147,7 +151,7 @@ const codeOf=it=>it.std==='OEM'?it.key.split('.').pop():it.std.split(' ').pop();
 
 // ---------- view ----------
 function isHidden(layer){const g=grpOf(layer);return hidden.has(g)||hidden.has(g.split('-')[0])}
-function bbox(){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const e of secs[cur.id].ents)if(!isHidden(e.layer))for(const p of e.pts){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}return[x0,Math.min(y0,0),x1,y1]}
+function bbox(){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const e of secs[cur.id].ents)if(!isHidden(e.layer))for(const p of e.pts){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}if(cur.axis==='y'){x0=Math.min(x0,VEH.bbox.min[0]-100);x1=Math.max(x1,VEH.bbox.max[0]+250);y0=Math.min(y0,-200)}return[x0,Math.min(y0,0),x1,y1]}
 function fit(b){const r=cv.getBoundingClientRect(),[x0,y0,x1,y1]=b||bbox();view.s=Math.min(r.width/Math.max(x1-x0,1),r.height/Math.max(y1-y0,1))*0.9;view.cx=(x0+x1)/2;view.cy=(y0+y1)/2;draw()}
 function resize(){const r=cv.getBoundingClientRect(),k=devicePixelRatio||1;cv.width=r.width*k;cv.height=r.height*k;draw()}
 const W=()=>cv.width/(devicePixelRatio||1),H=()=>cv.height/(devicePixelRatio||1);
@@ -156,17 +160,18 @@ function draw(){
   const k=devicePixelRatio||1;ctx.setTransform(k,0,0,k,0,0);ctx.clearRect(0,0,W(),H());if(!cur||!secs[cur.id])return;
   ctx.lineWidth=1.1;ctx.lineJoin='round';
   for(const e of secs[cur.id].ents){if(isHidden(e.layer))continue;ctx.strokeStyle=gcol(grpOf(e.layer));
-    ctx.beginPath();e.pts.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1])));if(e.closed)ctx.closePath();ctx.stroke()}
+    ctx.beginPath();e.pts.forEach((p,i)=>i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1])));
+    if(e.closed){ctx.closePath();ctx.globalAlpha=.18;ctx.fillStyle=ctx.strokeStyle;ctx.fill();ctx.globalAlpha=1}ctx.stroke()}
   ctx.strokeStyle='#bbb';ctx.setLineDash([6,4]);ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(W(),Y(0));ctx.stroke();ctx.setLineDash([]);
   ctx.fillStyle='#999';ctx.font='11px system-ui';ctx.fillText('Z=0 地面（轮胎接地）',6,Y(0)-4);
   for(const it of DTS.items){if(it.section!==cur.id)continue;const c=compute(it);if(!c)continue;const on=sel===it.key,g=c.geom;
     ctx.strokeStyle=ctx.fillStyle=on?'#ff6d00':'#b8860b';ctx.lineWidth=on?2.2:1.2;
-    if(g.ext){ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(X(g.ext[0][0]),Y(g.ext[0][1]));ctx.lineTo(X(g.ext[1][0]),Y(g.ext[1][1]));ctx.stroke();ctx.setLineDash([])}
+    for(const ex of[g.ext,g.ext2])if(ex){ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(X(ex[0][0]),Y(ex[0][1]));ctx.lineTo(X(ex[1][0]),Y(ex[1][1]));ctx.stroke();ctx.setLineDash([])}
     ctx.beginPath();ctx.moveTo(X(g.a[0]),Y(g.a[1]));ctx.lineTo(X(g.b[0]),Y(g.b[1]));ctx.stroke();
     for(const p of[g.a,g.b]){ctx.beginPath();ctx.arc(X(p[0]),Y(p[1]),2.5,0,7);ctx.fill()}
     const mx=(X(g.a[0])+X(g.b[0]))/2,my=(Y(g.a[1])+Y(g.b[1]))/2;
     ctx.font=(on?'600 ':'')+'12px system-ui,"PingFang SC",sans-serif';ctx.fillText(`${codeOf(it)} ${c.value.toFixed(1)}`,mx+5,my-4)}
-  if(cur.axis==='y')for(const n of['SgRP','AHP']){const[u,v]=refUV(n,cur.id);ctx.fillStyle='#8e24aa';ctx.strokeStyle='#fff';ctx.lineWidth=2;
+  if(cur.axis==='y')for(const n of REFN){const[u,v]=refUV(n,cur.id);ctx.fillStyle='#8e24aa';ctx.strokeStyle='#fff';ctx.lineWidth=2;
     ctx.beginPath();ctx.arc(X(u),Y(v),6,0,7);ctx.fill();ctx.stroke();ctx.font='600 12px system-ui';ctx.fillText(n+(R()[n].status==='estimate'?' (估算)':''),X(u)+9,Y(v)-8)}
   else{const[u,v]=refUV('SgRP',cur.id);ctx.strokeStyle='#8e24aa';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(X(u)-8,Y(v));ctx.lineTo(X(u)+8,Y(v));ctx.moveTo(X(u),Y(v)-8);ctx.lineTo(X(u),Y(v)+8);ctx.stroke();
     ctx.fillStyle='#8e24aa';ctx.font='12px system-ui';ctx.fillText('SgRP 投影',X(u)+10,Y(v)-6)}
@@ -181,7 +186,7 @@ function buildGroups(){const box=document.getElementById('groups');box.innerHTML
   for(const g of Object.keys(cnt).sort()){const l=document.createElement('label');l.innerHTML=`<input type="checkbox" ${hidden.has(g)||hidden.has(g.split('-')[0])?'':'checked'}><i style="background:${gcol(g)}"></i>${g}<small>${cnt[g]}</small>`;
     l.querySelector('input').onchange=ev=>{if(ev.target.checked){hidden.delete(g);hidden.delete(g.split('-')[0])}else hidden.add(g);draw()};box.appendChild(l)}}
 function buildRefs(){const box=document.getElementById('refs');box.innerHTML='';
-  for(const n of['SgRP','AHP']){const r=R()[n],d=document.createElement('div');
+  for(const n of REFN){const r=R()[n],d=document.createElement('div');
     d.innerHTML=`<div class="refrow"><b>${n}</b><span>X <input type="number" data-k="x" value="${Math.round(r.x)}"></span><span>Z <input type="number" data-k="z" value="${Math.round(r.z)}"></span></div><div class="mute" style="margin:-2px 0 4px">${r.status==='estimate'?'<span class="tag v">估算</span>':'<span class="tag ok">用户定义</span>'} Y=${r.y}</div>`;
     d.title=r.note||'';d.querySelectorAll('input').forEach(inp=>inp.onchange=()=>{r[inp.dataset.k]=+inp.value;r.status='user';save();refresh()});box.appendChild(d)}}
 function buildTable(){const tb=document.querySelector('#tbl tbody');tb.innerHTML='';const only=document.getElementById('onlySec').checked;
@@ -225,7 +230,7 @@ function annotatedDXF(){
     text(m,`${codeOf(it)} = ${c.value.toFixed(1)}`,L,ang);
     text([m[0]-uy*h*1.6,m[1]+ux*h*1.6],`[DTS] ${it.key} | 目标 ${tgtText(it.target)} | ${j}`,'ANNOT-DTS',ang,h*.6);
     text([m[0]-uy*h*2.6,m[1]+ux*h*2.6],`${it.std} ${it.name_cn} -> ${it.drives.join(',')}`,'ANNOT-SEMANTIC',ang,h*.6)}
-  if(cur.axis==='y')for(const n of['SgRP','AHP']){const p=refUV(n,cur.id);E('CIRCLE','REF-POINTS',[[10,p[0]],[20,p[1]],[30,0],[40,h*.4]]);text([p[0]+h,p[1]+h],`${n} (${R()[n].status==='estimate'?'估算':'用户定义'}) X${p[0].toFixed(0)} Z${p[1].toFixed(0)}`,'REF-POINTS')}
+  if(cur.axis==='y')for(const n of REFN){const p=refUV(n,cur.id);E('CIRCLE','REF-POINTS',[[10,p[0]],[20,p[1]],[30,0],[40,h*.4]]);text([p[0]+h,p[1]+h],`${n} (${R()[n].status==='estimate'?'估算':'用户定义'}) X${p[0].toFixed(0)} Z${p[1].toFixed(0)}`,'REF-POINTS')}
   let raw=secs[cur.id].raw;const cols={'REF-POINTS':6,'ANNOT-DTS':7,'ANNOT-SEMANTIC':8};
   const li=raw.indexOf('2\nLAYER\n70\n');if(li>=0){const e=raw.indexOf('0\nENDTAB',li);raw=raw.slice(0,e)+[...lay].map(l=>`0\nLAYER\n2\n${l}\n70\n0\n62\n${cols[l]||2}\n6\nCONTINUOUS\n`).join('')+raw.slice(e)}
   const k=raw.lastIndexOf('0\nENDSEC');return raw.slice(0,k)+out.join('')+raw.slice(k)}
@@ -236,7 +241,7 @@ cv.onpointerdown=e=>{const r=cv.getBoundingClientRect(),px=e.clientX-r.left,py=e
   if(measuring){const p=snap(px,py);pick.push(p);if(pick.length===2){const v=Math.hypot(pick[1][0]-pick[0][0],pick[1][1]-pick[0][1]);
       state.manual[measuring.key]={value:v,a:pick[0],b:pick[1],section:cur.id};save();endMeasure();buildTable()}
     else document.getElementById('hint').textContent=`测量 ${measuring.key}：点第 2 点`;draw();return}
-  if(cur.axis==='y')for(const n of['SgRP','AHP']){const[u,v]=refUV(n,cur.id);if(Math.hypot(X(u)-px,Y(v)-py)<10){dragRef=n;cv.setPointerCapture(e.pointerId);return}}
+  if(cur.axis==='y')for(const n of REFN){const[u,v]=refUV(n,cur.id);if(Math.hypot(X(u)-px,Y(v)-py)<10){dragRef=n;cv.setPointerCapture(e.pointerId);return}}
   cv._pan={x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'};
 cv.onpointerup=()=>{if(dragRef){dragRef=null;save();refresh()}cv._pan=null;if(!measuring)cv.style.cursor='grab'};
 cv.onpointermove=e=>{if(!cur)return;const r=cv.getBoundingClientRect(),px=e.clientX-r.left,py=e.clientY-r.top;
@@ -255,12 +260,12 @@ document.getElementById('csv').onclick=()=>{const rows=[['dts_key','category','s
   download('dts_check.csv','﻿'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n'),'text/csv')};
 document.getElementById('exJson').onclick=()=>download('refs_measures.json',JSON.stringify({vehicle:VEH.vehicle,axes:VEH.axes,...state},null,1),'application/json');
 document.getElementById('imJson').onchange=e=>{const f=e.target.files[0];if(f)f.text().then(t=>{const j=JSON.parse(t);if(j.refs)state.refs=j.refs;if(j.manual)state.manual=j.manual;if(j.hl!=null)state.hl=j.hl;document.getElementById('hl').value=state.hl;save();refresh()})};
-document.getElementById('reset').onclick=()=>{state={refs:JSON.parse(JSON.stringify(VEH.refs)),hl:0,manual:{}};document.getElementById('hl').value=0;save();refresh()};
+document.getElementById('reset').onclick=()=>{state={v:2,refs:JSON.parse(JSON.stringify(VEH.refs)),hl:0,manual:{}};document.getElementById('hl').value=0;save();refresh()};
 addEventListener('resize',resize);
 (async()=>{[VEH,DTS]=await Promise.all([fetch('data/vehicle.json').then(r=>r.json()),fetch('data/dts_catalog.json').then(r=>r.json())]);
   document.getElementById('veh').textContent=`${VEH.vehicle} · ${VEH.axes}`;
   document.getElementById('disc').textContent=`几何来自公开的 CCSA/GMU 有限元模型（FHWA 资助），不是丰田官方数据。${DTS.disclaimer}`;
-  const saved=store.get('j1100_state');state=saved&&saved.refs?saved:{refs:JSON.parse(JSON.stringify(VEH.refs)),hl:0,manual:{}};document.getElementById('hl').value=state.hl||0;
+  const saved=store.get('j1100_state');state=saved&&saved.refs&&saved.v===2?saved:{v:2,refs:JSON.parse(JSON.stringify(VEH.refs)),hl:0,manual:{}};document.getElementById('hl').value=state.hl||0;
   const nav=document.getElementById('tabs');for(const s of VEH.sections){const b=document.createElement('button');b.textContent=s.title;b.dataset.id=s.id;b.onclick=()=>{endMeasure();loadSection(s.id)};nav.appendChild(b)}
   buildRefs();resize();await loadSection(VEH.sections[0].id)})();
 </script>

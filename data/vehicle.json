@@ -3,6 +3,18 @@
  "source": "Center for Collision Safety and Analysis (CCSA), George Mason University; sponsored by FHWA. https://www.ccsa.gmu.edu/models/2012-toyota-camry",
  "units": "mm",
  "axes": "SAE J182: X rearward +, Y left +, Z up +",
+ "bbox": {
+  "min": [
+   0.4,
+   -913.2,
+   0.0
+  ],
+  "max": [
+   4807.1,
+   913.3,
+   1444.9
+  ]
+ },
  "sections": [
   {
    "id": "A_Y375",
@@ -13,7 +25,7 @@
    "value": 375,
    "u": "X",
    "v": "Z",
-   "desc": "Y=375：方向盘中心 Y≈362 与驾驶员座椅中心 Y≈384 之间。用于 H30、L53、H61 及顶盖/地板/前围的纵向包络。",
+   "desc": "Y=375：方向盘中心 Y≈362 与驾驶员座椅中心 Y≈384 之间。前后排座椅（含泡沫实体）、地板、前围、顶盖。用于 H30、L53、H61、L50-2 及前后排腿部空间。",
    "layers": {
     "OTHER__2000005_BUMPERFRONT_NULL": {
      "group": "OTHER",
@@ -325,10 +337,20 @@
      "pid": 2000380,
      "title": "75_subframefront"
     },
+    "OTHER__2000386_444_SUBFRAMESOLID2": {
+     "group": "OTHER",
+     "pid": 2000386,
+     "title": "444_subframesolid2"
+    },
     "OTHER__2000400_461_SUBFRAMESUSPBRKTRIGHT": {
      "group": "OTHER",
      "pid": 2000400,
      "title": "461_subframesuspbrktright"
+    },
+    "OTHER__2000428_509_RADIATOR": {
+     "group": "OTHER",
+     "pid": 2000428,
+     "title": "509_radiator"
     },
     "OTHER__2000431_669_TRANSMISSIONOILPAN": {
      "group": "OTHER",
@@ -350,10 +372,20 @@
      "pid": 2000455,
      "title": "287_aarmtube"
     },
+    "OTHER__2000456_271_AARMRUBBER": {
+     "group": "OTHER",
+     "pid": 2000456,
+     "title": "271_aarmrubber"
+    },
     "OTHER__2000460_361_ENGINEMOUNTLEFTBRKT2": {
      "group": "OTHER",
      "pid": 2000460,
      "title": "361_enginemountleftbrkt2"
+    },
+    "OTHER__2000463_853_TRANSMISSION": {
+     "group": "OTHER",
+     "pid": 2000463,
+     "title": "853_transmission"
     },
     "OTHER__2000495_474_SUSPROD1": {
      "group": "OTHER",
@@ -439,6 +471,11 @@
      "group": "OTHER",
      "pid": 2000620,
      "title": "bumperrearcover"
+    },
+    "OTHER__2000621_763_BATTERY": {
+     "group": "OTHER",
+     "pid": 2000621,
+     "title": "763_battery"
     },
     "BIW-ROOF__2000624_856_ROOFXMEMBER2": {
      "group": "BIW-ROOF",
@@ -550,6 +587,11 @@
      "pid": 2000742,
      "title": "900_dashdisplay"
     },
+    "OTHER__2000932_BUMPER_FOAM_FRONT": {
+     "group": "OTHER",
+     "pid": 2000932,
+     "title": "bumper_foam_front"
+    },
     "OTHER__2000933_1131_ANTISWAYBAR": {
      "group": "OTHER",
      "pid": 2000933,
@@ -585,10 +627,25 @@
      "pid": 2001014,
      "title": "1194_seatrearupperleftbase2"
     },
+    "SEAT__2001015_1195_SEATREARFOAM": {
+     "group": "SEAT",
+     "pid": 2001015,
+     "title": "1195_seatrearfoam"
+    },
     "SEAT__2001023_1203_SEATREARLEFTSUPPORTTUBE": {
      "group": "SEAT",
      "pid": 2001023,
      "title": "1203_seatrearleftsupporttube"
+    },
+    "SEAT__2001024_1204_SEATREARUPPERFOAMLEFT": {
+     "group": "SEAT",
+     "pid": 2001024,
+     "title": "1204_seatrearupperfoamleft"
+    },
+    "OTHER__2001052_1229_BUMPERFOAMREAR": {
+     "group": "OTHER",
+     "pid": 2001052,
+     "title": "1229_bumperfoamrear"
     },
     "OTHER__2001115_REAR_BUMPER_NULL_SHELLS": {
      "group": "OTHER",
@@ -670,6 +727,21 @@
      "pid": 2005047,
      "title": "1107_seatfrontLtopfroamsprt"
     },
+    "SEAT__2005049_1112_SEATFRONTUPPERCUSHION": {
+     "group": "SEAT",
+     "pid": 2005049,
+     "title": "1112_seatfrontuppercushion"
+    },
+    "SEAT__2005050_1113_SEATFRONTLOWERCUSHION": {
+     "group": "SEAT",
+     "pid": 2005050,
+     "title": "1113_seatfrontlowercushion"
+    },
+    "OTHER__2005052_1130_HEADREST": {
+     "group": "OTHER",
+     "pid": 2005052,
+     "title": "1130_headrest"
+    },
     "OTHER__2005053_1131_HEADRESTBAR": {
      "group": "OTHER",
      "pid": 2005053,
@@ -678,25 +750,20 @@
    }
   },
   {
-   "id": "B_X2370",
+   "id": "B_SGRP",
    "title": "B-B 前排 SgRP 横截面",
-   "file": "B_X2370.dxf",
-   "plane": "X = 2370",
+   "file": "B_SGRP.dxf",
+   "plane": "X = 2290",
    "axis": "x",
-   "value": 2370,
+   "value": 2290,
    "u": "Y",
    "v": "Z",
-   "desc": "X=2370（估算 SgRP 所在 X 平面）：顶盖边梁、B柱附近侧围、车门/门内饰、门槛、座椅。用于肩部/肘部空间 W3/W31 与顶盖边梁、门槛包络。",
+   "desc": "X=2290（估算前排 SgRP 所在 X 平面）：顶盖边梁、侧围、车门/门内饰、门槛、座椅。用于肩部/肘部空间 W3/W31 与顶盖边梁、门槛包络。",
    "layers": {
     "OTHER__2000107_93_SIDEPANEL": {
      "group": "OTHER",
      "pid": 2000107,
      "title": "93_sidepanel"
-    },
-    "BIW-FLOOR__2000109_98_FLOORPANXMEMBER": {
-     "group": "BIW-FLOOR",
-     "pid": 2000109,
-     "title": "98_floorpanxmember"
     },
     "BIW-SILL__2000110_99_ROCKERPLANELINNER": {
      "group": "BIW-SILL",
@@ -718,11 +785,6 @@
      "pid": 2000125,
      "title": "116_floorfront"
     },
-    "BIW-FLOOR__2000154_212_FLOORPANXMEMBERREARR": {
-     "group": "BIW-FLOOR",
-     "pid": 2000154,
-     "title": "212_floorpanxmemberrearR"
-    },
     "BIW-FLOOR__2000171_245_FLOORREARSUPPORT": {
      "group": "BIW-FLOOR",
      "pid": 2000171,
@@ -738,20 +800,20 @@
      "pid": 2000186,
      "title": "230_roofrailsideinner"
     },
-    "BIW-SILL__2000188_251_ROCKERSUPRTMID": {
+    "BIW-SILL__2000191_246_ROCKERHORIZONTALSUPRTMID": {
      "group": "BIW-SILL",
-     "pid": 2000188,
-     "title": "251_rockersuprtmid"
-    },
-    "BIW-PILLAR__2000192_253_ROCKERBRKTUDRBPILLAR": {
-     "group": "BIW-PILLAR",
-     "pid": 2000192,
-     "title": "253_rockerbrktudrbpillar"
+     "pid": 2000191,
+     "title": "246_rockerhorizontalsuprtmid"
     },
     "BIW-ROOF__2000199_123_SIDEROOFRAIL": {
      "group": "BIW-ROOF",
      "pid": 2000199,
      "title": "123_sideroofrail"
+    },
+    "BIW-SILL__2000219_247_ROCKERHORIZONTALSUPRTFRONT": {
+     "group": "BIW-SILL",
+     "pid": 2000219,
+     "title": "247_rockerhorizontalsuprtfront"
     },
     "BIW-ROOF__2000222_301_ROOFOUTER": {
      "group": "BIW-ROOF",
@@ -773,6 +835,11 @@
      "pid": 2000240,
      "title": "322_sideroofrailR"
     },
+    "BIW-PILLAR__2000241_337_BPILLARINNERMAINR": {
+     "group": "BIW-PILLAR",
+     "pid": 2000241,
+     "title": "337_bpillarinnermainR"
+    },
     "BIW-PILLAR__2000244_335_BPILLARINNERR": {
      "group": "BIW-PILLAR",
      "pid": 2000244,
@@ -788,15 +855,15 @@
      "pid": 2000248,
      "title": "328_rockerplanelinnerR"
     },
-    "BIW-SILL__2000252_334_ROCKERSUPRTMIDR": {
+    "BIW-SILL__2000249_329_ROCKERHORIZONTALSUPRTFRONTR": {
      "group": "BIW-SILL",
-     "pid": 2000252,
-     "title": "334_rockersuprtmidR"
+     "pid": 2000249,
+     "title": "329_rockerhorizontalsuprtfrontR"
     },
-    "BIW-PILLAR__2000254_333_ROCKERBRKTUDRBPILLARR": {
-     "group": "BIW-PILLAR",
-     "pid": 2000254,
-     "title": "333_rockerbrktudrbpillarR"
+    "BIW-SILL__2000250_330_ROCKERHORIZONTALSUPRTMIDR": {
+     "group": "BIW-SILL",
+     "pid": 2000250,
+     "title": "330_rockerhorizontalsuprtmidR"
     },
     "BIW-FLOOR__2000264_354_FLOORREARSUPPORTR": {
      "group": "BIW-FLOOR",
@@ -883,55 +950,60 @@
      "pid": 2000746,
      "title": "962_doorfrontbar"
     },
-    "DOOR-INNER__2000747_424_DOORFRONTBOTTOMREARBRKT": {
-     "group": "DOOR-INNER",
-     "pid": 2000747,
-     "title": "424_doorfrontbottomrearbrkt"
-    },
     "DOOR-INNER__2000748_420_DOORFRONTUPPERXMEMBER": {
      "group": "DOOR-INNER",
      "pid": 2000748,
      "title": "420_doorfrontupperxmember"
+    },
+    "DOOR-INNER__2000750_895_DOORFRONTLOWERBRKT": {
+     "group": "DOOR-INNER",
+     "pid": 2000750,
+     "title": "895_doorfrontlowerbrkt"
     },
     "DOOR-INNER__2000756_962_DOORFRONTBAR.1": {
      "group": "DOOR-INNER",
      "pid": 2000756,
      "title": "962_doorfrontbar.1"
     },
-    "DOOR-INNER__2000757_424_DOORFRONTBOTTOMREARBRKT.1": {
-     "group": "DOOR-INNER",
-     "pid": 2000757,
-     "title": "424_doorfrontbottomrearbrkt.1"
-    },
     "DOOR-INNER__2000758_420_DOORFRONTUPPERXMEMBER.1": {
      "group": "DOOR-INNER",
      "pid": 2000758,
      "title": "420_doorfrontupperxmember.1"
+    },
+    "DOOR-INNER__2000760_895_DOORFRONTLOWERBRKT.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000760,
+     "title": "895_doorfrontlowerbrkt.1"
     },
     "DOOR-INNER__2000767_889_DOORFRONTWINMOTORUPPERBAR": {
      "group": "DOOR-INNER",
      "pid": 2000767,
      "title": "889_doorfrontwinmotorupperbar"
     },
+    "DOOR-INNER__2000770_886_DOORFRONTWINMOTORBARLOWER": {
+     "group": "DOOR-INNER",
+     "pid": 2000770,
+     "title": "886_doorfrontwinmotorbarlower"
+    },
+    "DOOR-INNER__2000775_876_DOORFRONTPASSENGERFOAM": {
+     "group": "DOOR-INNER",
+     "pid": 2000775,
+     "title": "876_doorfrontpassengerfoam"
+    },
+    "DOOR-INNER__2000779_876_DOORFRONTPASSENGERFOAM.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000779,
+     "title": "876_doorfrontpassengerfoam.1"
+    },
     "DOOR-INNER__2000780_889_DOORFRONTWINMOTORUPPERBAR.1": {
      "group": "DOOR-INNER",
      "pid": 2000780,
      "title": "889_doorfrontwinmotorupperbar.1"
     },
-    "SEAT__2000829_532_DRIVERSEATBASERIGHTREARFOOTBRACKET.1": {
-     "group": "SEAT",
-     "pid": 2000829,
-     "title": "532_driverseatbaserightrearfootbracket.1"
-    },
-    "SEAT__2000843_1015_DRIVERSEATBASECNTRREAR.1": {
-     "group": "SEAT",
-     "pid": 2000843,
-     "title": "1015_driverseatbasecntrrear.1"
-    },
-    "SEAT__2000848_532_DRIVERSEATBASERIGHTREARFOOTBRACKET.3": {
-     "group": "SEAT",
-     "pid": 2000848,
-     "title": "532_driverseatbaserightrearfootbracket.3"
+    "DOOR-INNER__2000783_886_DOORFRONTWINMOTORBARLOWER.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000783,
+     "title": "886_doorfrontwinmotorbarlower.1"
     },
     "SEAT__2000850_535_DRIVERSEATBASERIGHTOUTERRAIL.1": {
      "group": "SEAT",
@@ -973,16 +1045,6 @@
      "pid": 2000869,
      "title": "558_driverseatbaseleftlowerrailrearbracket.1"
     },
-    "SEAT__2000870_559_DRIVERSEATBASELEFTUPPERRAILMIDDLEBRACKET.1": {
-     "group": "SEAT",
-     "pid": 2000870,
-     "title": "559_driverseatbaseleftupperrailmiddlebracket.1"
-    },
-    "SEAT__2000871_560_DRIVERSEATBASELEFTGEARBRACKET.1": {
-     "group": "SEAT",
-     "pid": 2000871,
-     "title": "560_driverseatbaseleftgearbracket.1"
-    },
     "TRIM-DOOR__2000889_1085_DOORFRONTTRIMMID": {
      "group": "TRIM-DOOR",
      "pid": 2000889,
@@ -1002,6 +1064,11 @@
      "group": "TRIM-DOOR",
      "pid": 2000894,
      "title": "1089_doorfronttrimupper"
+    },
+    "TRIM-DOOR__2000898_1093_DOORFRONTTRIMHIPFOAM": {
+     "group": "TRIM-DOOR",
+     "pid": 2000898,
+     "title": "1093_doorfronttrimhipfoam"
     },
     "TRIM-DOOR__2000900_1095_DOORFRONTTRIMMIDL": {
      "group": "TRIM-DOOR",
@@ -1023,20 +1090,25 @@
      "pid": 2000904,
      "title": "1099_doorfronttrimupper"
     },
+    "TRIM-DOOR__2000908_1103_DOORFRONTTRIMHIPFOAML": {
+     "group": "TRIM-DOOR",
+     "pid": 2000908,
+     "title": "1103_doorfronttrimhipfoamL"
+    },
     "TRIM-PILLAR__2000916_1109_BPILLARLOWERTRIM": {
      "group": "TRIM-PILLAR",
      "pid": 2000916,
      "title": "1109_bpillarlowertrim"
     },
+    "SEAT__2000920_1113_SEATFRONTLOWERCUSHION.1": {
+     "group": "SEAT",
+     "pid": 2000920,
+     "title": "1113_seatfrontlowercushion.1"
+    },
     "TRIM-PILLAR__2000923_1118_BPILLARUPPERINNERTRIMR": {
      "group": "TRIM-PILLAR",
      "pid": 2000923,
      "title": "1118_bpillarupperinnertrimR"
-    },
-    "SEAT__2000928_1106_SEATFRONTLBOTTOMFOAMSPRT.1": {
-     "group": "SEAT",
-     "pid": 2000928,
-     "title": "1106_seatfrontLbottomfoamsprt.1"
     },
     "OTHER__2000983_1163_CONSOLEBASEOUTER": {
      "group": "OTHER",
@@ -1078,26 +1150,6 @@
      "pid": 2001056,
      "title": "R_B-pillar_lower"
     },
-    "SEAT__2001111_PASS_SEAT_ATT1": {
-     "group": "SEAT",
-     "pid": 2001111,
-     "title": "pass_seat_att1"
-    },
-    "SEAT__2001114_PASS_SEAT_ATT4": {
-     "group": "SEAT",
-     "pid": 2001114,
-     "title": "pass_seat_att4"
-    },
-    "SEAT__2005000_DRIVER_SEAT_ATT1": {
-     "group": "SEAT",
-     "pid": 2005000,
-     "title": "driver_seat_att1"
-    },
-    "SEAT__2005003_DRIVER_SEAT_ATT4": {
-     "group": "SEAT",
-     "pid": 2005003,
-     "title": "driver_seat_att4"
-    },
     "SEAT__2005020_558_DRIVERSEATBASELEFTLOWERRAILREARBRACKET": {
      "group": "SEAT",
      "pid": 2005020,
@@ -1117,21 +1169,6 @@
      "group": "SEAT",
      "pid": 2005029,
      "title": "538_driverseatbaserightrailrearbracket"
-    },
-    "SEAT__2005030_1015_DRIVERSEATBASECNTRREAR": {
-     "group": "SEAT",
-     "pid": 2005030,
-     "title": "1015_driverseatbasecntrrear"
-    },
-    "SEAT__2005040_559_DRIVERSEATBASELEFTUPPERRAILMIDDLEBRACKET": {
-     "group": "SEAT",
-     "pid": 2005040,
-     "title": "559_driverseatbaseleftupperrailmiddlebracket"
-    },
-    "SEAT__2005041_560_DRIVERSEATBASELEFTGEARBRACKET": {
-     "group": "SEAT",
-     "pid": 2005041,
-     "title": "560_driverseatbaseleftgearbracket"
     },
     "SEAT__2005042_557_DRIVERSEATBASELEFTUPPERRAIL": {
      "group": "SEAT",
@@ -1153,10 +1190,10 @@
      "pid": 2005045,
      "title": "555_driverseatbaseleftlowerrailouter"
     },
-    "SEAT__2005046_1106_SEATFRONTLBOTTOMFOAMSPRT": {
+    "SEAT__2005050_1113_SEATFRONTLOWERCUSHION": {
      "group": "SEAT",
-     "pid": 2005046,
-     "title": "1106_seatfrontLbottomfoamsprt"
+     "pid": 2005050,
+     "title": "1113_seatfrontlowercushion"
     }
    }
   },
@@ -1571,6 +1608,11 @@
      "pid": 2000914,
      "title": "1105_apillartrimL"
     },
+    "SEAT__2000920_1113_SEATFRONTLOWERCUSHION.1": {
+     "group": "SEAT",
+     "pid": 2000920,
+     "title": "1113_seatfrontlowercushion.1"
+    },
     "TRIM-PILLAR__2000924_1118_BPILLARUPPERINNERTRIMR.1": {
      "group": "TRIM-PILLAR",
      "pid": 2000924,
@@ -1605,17 +1647,37 @@
      "group": "SEAT",
      "pid": 2005038,
      "title": "551_driverseatbasefrontbarleftbracket"
+    },
+    "SEAT__2005050_1113_SEATFRONTLOWERCUSHION": {
+     "group": "SEAT",
+     "pid": 2005050,
+     "title": "1113_seatfrontlowercushion"
     }
    }
   }
  ],
  "refs": {
   "SgRP": {
-   "x": 2370,
    "y": 375,
-   "z": 530,
    "status": "estimate",
-   "note": "估算：由驾驶员座椅靠背铰接支架位置推算（铰点前约130、上约80）。模型无坐垫泡沫，请在 A 截面拖动修正。"
+   "note": "估算：靠背前表面（坐垫后端上方 100 mm 处）向前 135 mm，坐垫自由表面上方 60 mm。请在 A 截面拖动修正。",
+   "x": 2289,
+   "z": 514,
+   "basis": {
+    "back_front_x": 2424,
+    "cushion_rear_top_z": 432
+   }
+  },
+  "SgRP2": {
+   "y": 375,
+   "status": "estimate",
+   "note": "第二排外侧座位，估算方法同前排。Y 取 375（假设与前排同一纵平面）。",
+   "x": 3219,
+   "z": 537,
+   "basis": {
+    "back_front_x": 3354,
+    "cushion_rear_top_z": 455
+   }
   },
   "AHP": {
    "x": 1600,

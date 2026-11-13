@@ -16,12 +16,29 @@ def to_j182(xyz, cfg):
     """model -> J182 axes: flip each axis per cfg['axis_sign'] (e.g. Camry: x front-positive -> flip)."""
     return xyz * np.array(cfg.get('axis_sign', [1, 1, 1]), float)
 
+def estimate_ref(r, xyz, tri, pid):
+    """SgRP-like estimate from seat foam: back front surface at cushion-rear + back_dz, move fwd, then dz above cushion top."""
+    e = r.pop('estimate_from', None)
+    if not e: return r
+    segs, sp = slice_mesh(xyz, tri, pid, 'y', r['y'])
+    C = [pl for p in e['cushion'] for pl in chain(segs[sp == p])]; B = [pl for p in e['back'] for pl in chain(segs[sp == p])]
+    if not C or not B: raise SystemExit(f"estimate: seat parts not cut at y={r['y']}")
+    xs = np.concatenate([pl[:, 0] for pl in C]); x_rear = xs.max()
+    top_rear = ray_hit(C, (x_rear - 30, 5000), (0, -1))[1][1]
+    xb = ray_hit(B, (-1e5, top_rear + e['back_dz']), (1, 0))[1][0]
+    x = xb - e['fwd']; z = ray_hit(C, (x, 5000), (0, -1))[1][1] + e['dz']
+    r.update(x=round(float(x)), z=round(float(z)), basis=dict(back_front_x=round(float(xb)), cushion_rear_top_z=round(float(top_rear))))
+    print('estimate', r); return r
+
 def main(key, cfgp, out):
     cfg = json.load(open(cfgp)); os.makedirs(out, exist_ok=True)
     m = read_key(key); xyz, tri, pid = to_arrays(m); xyz = to_j182(xyz, cfg)
     titles = m['parts']; group = {p: classify(t) for p, t in titles.items()}
+    keep = np.unique(tri)
+    lo, hi = xyz[keep].min(0), xyz[keep].max(0)
+    refs = {k: estimate_ref(dict(v), xyz, tri, pid) for k, v in cfg['refs'].items()}
     meta = dict(vehicle=cfg['vehicle'], source=cfg['source'], units='mm', axes='SAE J182: X rearward +, Y left +, Z up +',
-                sections=[], refs=cfg['refs'])
+                bbox=dict(min=lo.round(1).tolist(), max=hi.round(1).tolist()), sections=[], refs=refs)
     for sc in cfg['sections']:
         segs, spid = slice_mesh(xyz, tri, pid, sc['axis'], sc['value'])
         u = {'y': 'X', 'x': 'Y', 'z': 'X'}[sc['axis']]; v = {'y': 'Z', 'x': 'Z', 'z': 'Y'}[sc['axis']]
