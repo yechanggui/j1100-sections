@@ -1,21 +1,49 @@
-# 断面 DXF × SAE J1100 / J182 × DTS 语义对齐
+# 车身断面 DXF × SAE J1100 / J182 × DTS 语义对齐
 
-静态网站（无后端、无外部依赖）：在浏览器里查看截面 DXF，并把每个尺寸与 **标准代号 / 驱动的断面图层 / DTS 键** 对齐。
+静态网站（纯 HTML/JS，无依赖）。从 LS-DYNA 整车有限元模型切出车身断面，在浏览器里：
 
-- `index.html` 查看器（画布缩放平移、图层开关、点表格行高亮并缩放到对应尺寸、导出语义 CSV、可拖入自己的 DXF）
-- `data/*.dxf` 示意断面（A 纵向中心截面、B 顶盖-侧围-车门横截面、C 门槛-密封条截面）
-- `data/semantics.json` 语义对齐表（尺寸代号、定义、锚点、驱动图层、DTS 键、状态）
-- `tools/gen_demo.py` 生成上述 DXF 和 JSON（仅标准库 + numpy）
-- `tools/pipeline/` 从 LS-DYNA `.key` 切截面并按零件分层输出 DXF 的流水线（见 `build.py`）
+- 按语义图层组显示断面（白车身 / 车门 / 玻璃 / 内饰 / 座椅 …，每个零件一个 DXF 图层）
+- **用户自定义参考点**：在 A 截面拖动 SgRP（H 点）和 AHP（踵点），或直接输入坐标
+- **自动计算** J1100 布置尺寸：H30、L53、H61（8° 线 +102）、W3、W31、门槛高度
+- **手动测量**：DTS 目录里的 manual 项，在截面上点两点（吸附顶点）
+- DTS 核对表：实测 vs 目标 → 符合 / 不符合；每项对应约束的断面图层与包络含义
+- 导出：带尺寸与 `[DTS]` 语义文字的 DXF（R12）、DTS 核对 CSV、参考点+测量 JSON
 
-## 重要说明
-1. 演示几何和数值是**示意数据**，不是任何真实车型。
-2. J1100 为付费标准，条目定义写作“待核对”的需对照标准原文；`L34*` 是简化。
-3. `dts_target` 留空，请填入贵司 DTS 目标/公差；`dts_key` 是对齐接口，可按贵司命名改写。
-4. 尺寸在 DXF 中以线/箭头/文字绘制（非 DIMENSION 实体），语义信息以 `[DTS] key` 文字（图层 `ANNOT-DTS`）+ `semantics.json` 携带。
+所有坐标均为 **SAE J182**：X 向后为正、Y 向左为正、Z 向上为正，单位 mm。
 
-## 图层命名
-`BIW-*` 白车身 · `DOOR-*` 车门 · `GLASS-*` 玻璃 · `TRIM-*` 内饰 · `SEAL-*` 密封条 · `SEAT-*` 座椅 · `REF-POINTS` 参考点 · `DIM-J1100` / `DIM-OEM` 尺寸 · `ANNOT-DTS` DTS 语义
+## 数据来源与声明
+- 几何：2012 Toyota Camry 详细有限元模型 v5a，由 George Mason University 的 Center for Collision Safety and Analysis (CCSA) 开发，FHWA 资助。https://www.ccsa.gmu.edu/models/2012-toyota-camry 。这是逆向工程的仿真模型，不是丰田官方数据。
+- `data/dts_catalog.json` 中的目标值是**示例**，不是任何主机厂 DTS，也不是 SAE 规定值。
+- 标注“待核对”的 J1100 定义（H61、W3、W31 的简化做法）需对照 SAE J1100 原文。
+- 默认 SgRP / AHP 为**估算**值（模型无坐垫泡沫、无地毯），请在页面上修正。
+- 模型不含顶棚、地毯、密封条：H61 需手动输入顶棚厚度扣减；密封压缩量等项无法在本模型上测量。
 
-## 本地运行
-`python3 -m http.server` 然后打开 http://localhost:8000
+## 目录
+```
+index.html               查看器
+data/vehicle.json        车型、截面列表、每个 DXF 图层 → 零件/语义组、参考点默认值
+data/dts_catalog.json    DTS 目录（键、标准代号、测量方法、目标、约束图层）
+data/*.dxf               各截面（R12，每零件一层，图层名 = 语义组__PID_零件名）
+tools/gen_sections.py    从 .key 生成上面的 data/
+tools/vehicle.json       车型配置：轴向翻转、截面平面、参考点估算
+tools/classify.py        零件名 → 语义组的规则（按需修改）
+tools/keyparse.py        LS-DYNA *NODE / *ELEMENT_SHELL / *PART / *INCLUDE 读取
+tools/section.py         平面切三角形网格、线段拼多段线、射线求交
+tools/dxfout.py          无依赖 DXF R12 写出
+```
+
+## 换一个 .key 模型
+需要 Python 3 + numpy。
+1. 复制 `tools/vehicle.json`，按新模型修改：
+   - `axis_sign`：把模型坐标换成 J182。模型 X 向前为正就写 `[-1,1,1]`；已是 J182 就写 `[1,1,1]`。
+   - `sections`：每个截面的平面（`axis` x/y/z，`value` 为 **J182 坐标下**的值）。
+   - `refs`：SgRP / AHP 的初始估计（页面上可再修改）。
+2. 看零件名，按需修改 `tools/classify.py` 的正则（不同建模团队命名差异很大）。
+3. 生成：`python3 tools/gen_sections.py 你的模型.key 你的配置.json data/`
+4. 若 DTS 项用了不同截面 id，同步修改 `data/dts_catalog.json` 的 `section`。
+5. 本地预览：`python3 -m http.server`，打开 http://localhost:8000
+
+读取器限制：只读壳单元（`*ELEMENT_SHELL`，四边形拆成三角形）；实体、梁单元不参与切面；支持固定列宽和逗号分隔格式与 `*INCLUDE`，不支持 `*INCLUDE_TRANSFORM`、`*NODE %` 长格式、`*PART` 以外的零件定义（如 `*PART_CONTACT`）。
+
+## 发布
+仓库根目录即站点。Settings → Pages → Deploy from a branch → `main` / `(root)`。

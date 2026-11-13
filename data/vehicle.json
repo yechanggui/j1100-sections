@@ -1,0 +1,1628 @@
+{
+ "vehicle": "2012 Toyota Camry (CCSA/GMU FE model v5a)",
+ "source": "Center for Collision Safety and Analysis (CCSA), George Mason University; sponsored by FHWA. https://www.ccsa.gmu.edu/models/2012-toyota-camry",
+ "units": "mm",
+ "axes": "SAE J182: X rearward +, Y left +, Z up +",
+ "sections": [
+  {
+   "id": "A_Y375",
+   "title": "A-A 驾驶员中心纵截面",
+   "file": "A_Y375.dxf",
+   "plane": "Y = 375",
+   "axis": "y",
+   "value": 375,
+   "u": "X",
+   "v": "Z",
+   "desc": "Y=375：方向盘中心 Y≈362 与驾驶员座椅中心 Y≈384 之间。用于 H30、L53、H61 及顶盖/地板/前围的纵向包络。",
+   "layers": {
+    "OTHER__2000005_BUMPERFRONT_NULL": {
+     "group": "OTHER",
+     "pid": 2000005,
+     "title": "bumperfront_null"
+    },
+    "BIW-DASH__2000014_191_FIREWALLUNERSUPRT": {
+     "group": "BIW-DASH",
+     "pid": 2000014,
+     "title": "191_firewallunersuprt"
+    },
+    "BIW-DASH__2000016_192_FIREWALLUNDERSUPPORTMIDDLE": {
+     "group": "BIW-DASH",
+     "pid": 2000016,
+     "title": "192_firewallundersupportmiddle"
+    },
+    "BIW-ROOF__2000019_119_FRONTROOFHEADER": {
+     "group": "BIW-ROOF",
+     "pid": 2000019,
+     "title": "119_frontroofheader"
+    },
+    "BIW-FLOOR__2000025_89_FLOORXMEMBERSUPPORT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000025,
+     "title": "89_floorxmembersupport"
+    },
+    "OTHER__2000039_08_UPPERRADIATORSUPPORT": {
+     "group": "OTHER",
+     "pid": 2000039,
+     "title": "08_upperradiatorsupport"
+    },
+    "OTHER__2000057_24_BUMPERFRONT": {
+     "group": "OTHER",
+     "pid": 2000057,
+     "title": "24_bumperfront"
+    },
+    "BIW-RAIL__2000075_44_RADIATORCROSSMEMBER": {
+     "group": "BIW-RAIL",
+     "pid": 2000075,
+     "title": "44_radiatorcrossmember"
+    },
+    "BIW-DASH__2000082_54_FIREWALL": {
+     "group": "BIW-DASH",
+     "pid": 2000082,
+     "title": "54_firewall"
+    },
+    "OTHER__2000089_61_BATTERYPLATE": {
+     "group": "OTHER",
+     "pid": 2000089,
+     "title": "61_batteryplate"
+    },
+    "OTHER__2000104_81_SUBFRAMEBRKTL": {
+     "group": "OTHER",
+     "pid": 2000104,
+     "title": "81_subframebrktL"
+    },
+    "BIW-FLOOR__2000108_97_FLOORPANXMEMBERFRNT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000108,
+     "title": "97_floorpanxmemberfrnt"
+    },
+    "BIW-FLOOR__2000109_98_FLOORPANXMEMBER": {
+     "group": "BIW-FLOOR",
+     "pid": 2000109,
+     "title": "98_floorpanxmember"
+    },
+    "BIW-DASH__2000112_102_FIREWALLLEFTSUPPORT": {
+     "group": "BIW-DASH",
+     "pid": 2000112,
+     "title": "102_firewallleftsupport"
+    },
+    "BIW-DASH__2000117_108_FIREWALLXMEMBER": {
+     "group": "BIW-DASH",
+     "pid": 2000117,
+     "title": "108_firewallxmember"
+    },
+    "BIW-FLOOR__2000125_116_FLOORFRONT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000125,
+     "title": "116_floorfront"
+    },
+    "OTHER__2000132_166_SHELFPANELSIDE": {
+     "group": "OTHER",
+     "pid": 2000132,
+     "title": "166_shelfpanelside"
+    },
+    "BIW-FLOOR__2000134_813_FLOORPANREAR": {
+     "group": "BIW-FLOOR",
+     "pid": 2000134,
+     "title": "813_floorpanrear"
+    },
+    "BIW-FLOOR__2000136_131_FLOORPANELXMEMBER": {
+     "group": "BIW-FLOOR",
+     "pid": 2000136,
+     "title": "131_floorpanelxmember"
+    },
+    "BIW-FLOOR__2000143_129_FLOORPANREAR2": {
+     "group": "BIW-FLOOR",
+     "pid": 2000143,
+     "title": "129_floorpanrear2"
+    },
+    "OTHER__2000145_175_SHELFPANELSIDEEXT": {
+     "group": "OTHER",
+     "pid": 2000145,
+     "title": "175_shelfpanelsideext"
+    },
+    "OTHER__2000146_138_SIDEPANELSIDESUPPORT2": {
+     "group": "OTHER",
+     "pid": 2000146,
+     "title": "138_sidepanelsidesupport2"
+    },
+    "OTHER__2000147_171_SHELFPANEL": {
+     "group": "OTHER",
+     "pid": 2000147,
+     "title": "171_shelfpanel"
+    },
+    "BIW-RAIL__2000148_152_REARCLOSEOUTPANELXMEMBER": {
+     "group": "BIW-RAIL",
+     "pid": 2000148,
+     "title": "152_rearcloseoutpanelxmember"
+    },
+    "OTHER__2000149_154_REARCLOSEOUTPANEL": {
+     "group": "OTHER",
+     "pid": 2000149,
+     "title": "154_rearcloseoutpanel"
+    },
+    "OTHER__2000159_197_RADIATORFRAMECORNERSUPRT": {
+     "group": "OTHER",
+     "pid": 2000159,
+     "title": "197_radiatorframecornersuprt"
+    },
+    "OTHER__2000172_51_COWLUPPER": {
+     "group": "OTHER",
+     "pid": 2000172,
+     "title": "51_cowlupper"
+    },
+    "BIW-DASH__2000173_67_FIREWALLUPPER": {
+     "group": "BIW-DASH",
+     "pid": 2000173,
+     "title": "67_firewallupper"
+    },
+    "BIW-FLOOR__2000204_157_TRUNKFLOOR": {
+     "group": "BIW-FLOOR",
+     "pid": 2000204,
+     "title": "157_trunkfloor"
+    },
+    "BIW-RAIL__2000207_316_TRUNKXMEMBEREND": {
+     "group": "BIW-RAIL",
+     "pid": 2000207,
+     "title": "316_trunkxmemberend"
+    },
+    "OTHER__2000208_317_SHOTGUNREARBRACE": {
+     "group": "OTHER",
+     "pid": 2000208,
+     "title": "317_shotgunrearbrace"
+    },
+    "OTHER__2000211_156_SHELFPANELSIDEINNEL": {
+     "group": "OTHER",
+     "pid": 2000211,
+     "title": "156_shelfpanelsideinneL"
+    },
+    "BIW-RAIL__2000216_145_SHELFPANELREARXMEMBERRTOP": {
+     "group": "BIW-RAIL",
+     "pid": 2000216,
+     "title": "145_shelfpanelrearxmemberrtop"
+    },
+    "BIW-FLOOR__2000217_167_FLOORPANREARXMEMBER": {
+     "group": "BIW-FLOOR",
+     "pid": 2000217,
+     "title": "167_floorpanrearxmember"
+    },
+    "BIW-ROOF__2000222_301_ROOFOUTER": {
+     "group": "BIW-ROOF",
+     "pid": 2000222,
+     "title": "301_roofouter"
+    },
+    "OTHER__2000227_821_SHOTGUNUNDERSUPPORTREAR": {
+     "group": "OTHER",
+     "pid": 2000227,
+     "title": "821_shotgunundersupportrear"
+    },
+    "OTHER__2000230_240_SUBFRAMECABCNT": {
+     "group": "OTHER",
+     "pid": 2000230,
+     "title": "240_subframecabcnt"
+    },
+    "OTHER__2000231_243_SUBFRAMECABSUPT": {
+     "group": "OTHER",
+     "pid": 2000231,
+     "title": "243_subframecabsupt"
+    },
+    "BIW-ROOF__2000286_125_ROOFBOW": {
+     "group": "BIW-ROOF",
+     "pid": 2000286,
+     "title": "125_roofbow"
+    },
+    "BIW-ROOF__2000287_396_ROOFXMEMBER": {
+     "group": "BIW-ROOF",
+     "pid": 2000287,
+     "title": "396_roofxmember"
+    },
+    "BIW-ROOF__2000288_300_ROOFHEADERREAR": {
+     "group": "BIW-ROOF",
+     "pid": 2000288,
+     "title": "300_roofheaderrear"
+    },
+    "GLASS-WINDSHIELD__2000290_50_WINDSHIELD_MIDLAYER": {
+     "group": "GLASS-WINDSHIELD",
+     "pid": 2000290,
+     "title": "50_windshield_Midlayer"
+    },
+    "GLASS-BACKLITE__2000291_46_WINDOWREAR_MIDLAYER": {
+     "group": "GLASS-BACKLITE",
+     "pid": 2000291,
+     "title": "46_windowrear_Midlayer"
+    },
+    "OTHER__2000292_387_HOODOUTER": {
+     "group": "OTHER",
+     "pid": 2000292,
+     "title": "387_hoodouter"
+    },
+    "OTHER__2000293_388_TRUNKINNER": {
+     "group": "OTHER",
+     "pid": 2000293,
+     "title": "388_trunkinner"
+    },
+    "OTHER__2000294_389_TRUNKOUTER": {
+     "group": "OTHER",
+     "pid": 2000294,
+     "title": "389_trunkouter"
+    },
+    "OTHER__2000295_386_HOODINNER": {
+     "group": "OTHER",
+     "pid": 2000295,
+     "title": "386_hoodinner"
+    },
+    "STRUCT-IPBEAM__2000309_831_IPBEAMATTCH3PT1LGTUBE": {
+     "group": "STRUCT-IPBEAM",
+     "pid": 2000309,
+     "title": "831_ipbeamattch3pt1lgtube"
+    },
+    "STRUCT-IPBEAM__2000313_824_IPBEAMLRGTUBE": {
+     "group": "STRUCT-IPBEAM",
+     "pid": 2000313,
+     "title": "824_ipbeamlrgtube"
+    },
+    "STRUCT-IPBEAM__2000318_832_IPBEAMATTCH3PT2LGTUBE": {
+     "group": "STRUCT-IPBEAM",
+     "pid": 2000318,
+     "title": "832_ipbeamattch3pt2lgtube"
+    },
+    "OTHER__2000330_448_SUBFRAMETUBE2": {
+     "group": "OTHER",
+     "pid": 2000330,
+     "title": "448_subframetube2"
+    },
+    "OTHER__2000331_457_SUBFRAMEBRKTLEFTOUTER": {
+     "group": "OTHER",
+     "pid": 2000331,
+     "title": "457_subframebrktleftouter"
+    },
+    "OTHER__2000332_467_SUBFAMELEFTSIDETOP": {
+     "group": "OTHER",
+     "pid": 2000332,
+     "title": "467_subfameleftsidetop"
+    },
+    "OTHER__2000333_451_SUBFRAMEBOTTOMLEFT": {
+     "group": "OTHER",
+     "pid": 2000333,
+     "title": "451_subframebottomleft"
+    },
+    "OTHER__2000335_398_SUBFRAMEREARROP": {
+     "group": "OTHER",
+     "pid": 2000335,
+     "title": "398_subframerearrop"
+    },
+    "OTHER__2000342_399_SUBFRAMEREARBOTTOM": {
+     "group": "OTHER",
+     "pid": 2000342,
+     "title": "399_subframerearbottom"
+    },
+    "OTHER__2000343_511_RADIATORBOTTOM": {
+     "group": "OTHER",
+     "pid": 2000343,
+     "title": "511_radiatorbottom"
+    },
+    "OTHER__2000344_508_COOLANTTUBE": {
+     "group": "OTHER",
+     "pid": 2000344,
+     "title": "508_coolanttube"
+    },
+    "OTHER__2000346_510_RADIATORTOP": {
+     "group": "OTHER",
+     "pid": 2000346,
+     "title": "510_radiatortop"
+    },
+    "OTHER__2000347_512_RADIATORFANHOUSING": {
+     "group": "OTHER",
+     "pid": 2000347,
+     "title": "512_radiatorfanhousing"
+    },
+    "OTHER__2000373_401_SUBFRAMEFRONTBOTTOM": {
+     "group": "OTHER",
+     "pid": 2000373,
+     "title": "401_subframefrontbottom"
+    },
+    "OTHER__2000380_75_SUBFRAMEFRONT": {
+     "group": "OTHER",
+     "pid": 2000380,
+     "title": "75_subframefront"
+    },
+    "OTHER__2000400_461_SUBFRAMESUSPBRKTRIGHT": {
+     "group": "OTHER",
+     "pid": 2000400,
+     "title": "461_subframesuspbrktright"
+    },
+    "OTHER__2000431_669_TRANSMISSIONOILPAN": {
+     "group": "OTHER",
+     "pid": 2000431,
+     "title": "669_transmissionoilpan"
+    },
+    "OTHER__2000433_281_AARMLOWER": {
+     "group": "OTHER",
+     "pid": 2000433,
+     "title": "281_aarmlower"
+    },
+    "OTHER__2000453_280_AARMUPPER": {
+     "group": "OTHER",
+     "pid": 2000453,
+     "title": "280_aarmupper"
+    },
+    "OTHER__2000455_287_AARMTUBE": {
+     "group": "OTHER",
+     "pid": 2000455,
+     "title": "287_aarmtube"
+    },
+    "OTHER__2000460_361_ENGINEMOUNTLEFTBRKT2": {
+     "group": "OTHER",
+     "pid": 2000460,
+     "title": "361_enginemountleftbrkt2"
+    },
+    "OTHER__2000495_474_SUSPROD1": {
+     "group": "OTHER",
+     "pid": 2000495,
+     "title": "474_susprod1"
+    },
+    "OTHER__2000501_485_SUSPROD3TUBEROD": {
+     "group": "OTHER",
+     "pid": 2000501,
+     "title": "485_susprod3tuberod"
+    },
+    "OTHER__2000516_676_SUBFRAMEBODYBRKTSM": {
+     "group": "OTHER",
+     "pid": 2000516,
+     "title": "676_subframebodybrktsm"
+    },
+    "OTHER__2000597_RADIATOR_NULL": {
+     "group": "OTHER",
+     "pid": 2000597,
+     "title": "radiator_null"
+    },
+    "OTHER__2000602_TRANSMISSION_NULL": {
+     "group": "OTHER",
+     "pid": 2000602,
+     "title": "transmission_null"
+    },
+    "OTHER__2000603_141_BUMPERREAR": {
+     "group": "OTHER",
+     "pid": 2000603,
+     "title": "141_bumperrear"
+    },
+    "OTHER__2000604_774_BREAKBOOSTERBRKT": {
+     "group": "OTHER",
+     "pid": 2000604,
+     "title": "774_breakboosterbrkt"
+    },
+    "OTHER__2000605_775_BREAKBOOSTERTUBE": {
+     "group": "OTHER",
+     "pid": 2000605,
+     "title": "775_breakboostertube"
+    },
+    "OTHER__2000606_776_BREAKBOOSERCOVERFRONT": {
+     "group": "OTHER",
+     "pid": 2000606,
+     "title": "776_breakboosercoverfront"
+    },
+    "OTHER__2000607_777_BREAKBOOSERCOVERREAR": {
+     "group": "OTHER",
+     "pid": 2000607,
+     "title": "777_breakboosercoverrear"
+    },
+    "OTHER__2000608_778_BREAKBOOSERCONTAINER": {
+     "group": "OTHER",
+     "pid": 2000608,
+     "title": "778_breakboosercontainer"
+    },
+    "OTHER__2000609_771_GASTANKBOTTOM": {
+     "group": "OTHER",
+     "pid": 2000609,
+     "title": "771_gastankbottom"
+    },
+    "OTHER__2000610_779_GASTANKTOP": {
+     "group": "OTHER",
+     "pid": 2000610,
+     "title": "779_gastanktop"
+    },
+    "OTHER__2000613_762_TRAY": {
+     "group": "OTHER",
+     "pid": 2000613,
+     "title": "762_tray"
+    },
+    "OTHER__2000615_765_TRAYCONNECTORLEFT": {
+     "group": "OTHER",
+     "pid": 2000615,
+     "title": "765_trayconnectorleft"
+    },
+    "OTHER__2000619_769_BUMPERFRONTCOVER": {
+     "group": "OTHER",
+     "pid": 2000619,
+     "title": "769_bumperfrontcover"
+    },
+    "OTHER__2000620_BUMPERREARCOVER": {
+     "group": "OTHER",
+     "pid": 2000620,
+     "title": "bumperrearcover"
+    },
+    "BIW-ROOF__2000624_856_ROOFXMEMBER2": {
+     "group": "BIW-ROOF",
+     "pid": 2000624,
+     "title": "856_roofxmember2"
+    },
+    "BIW-ROOF__2000626_857_ROOFXMEMBER3": {
+     "group": "BIW-ROOF",
+     "pid": 2000626,
+     "title": "857_roofxmember3"
+    },
+    "BIW-ROOF__2000627_858_ROOFXMEMBER4": {
+     "group": "BIW-ROOF",
+     "pid": 2000627,
+     "title": "858_roofxmember4"
+    },
+    "OTHER__2000643_807_ANTISWAYBARREAR": {
+     "group": "OTHER",
+     "pid": 2000643,
+     "title": "807_antiswaybarrear"
+    },
+    "OTHER__2000646_BATTERY_NULL": {
+     "group": "OTHER",
+     "pid": 2000646,
+     "title": "battery_null"
+    },
+    "GLASS-WINDSHIELD__2000647_50_WINDSHIELD_TOP": {
+     "group": "GLASS-WINDSHIELD",
+     "pid": 2000647,
+     "title": "50_windshield_Top"
+    },
+    "GLASS-WINDSHIELD__2000648_50_WINDSHIELD_BOTTOM": {
+     "group": "GLASS-WINDSHIELD",
+     "pid": 2000648,
+     "title": "50_windshield_Bottom"
+    },
+    "TRIM-IP__2000685_937_DASHMAIN": {
+     "group": "TRIM-IP",
+     "pid": 2000685,
+     "title": "937_dashmain"
+    },
+    "OTHER__2000691_918_DISPLAYCOVER": {
+     "group": "OTHER",
+     "pid": 2000691,
+     "title": "918_displaycover"
+    },
+    "STEERING__2000700_652_STEERINGCOLMNTOPBRKT": {
+     "group": "STEERING",
+     "pid": 2000700,
+     "title": "652_steeringcolmntopbrkt"
+    },
+    "STEERING__2000701_1013_STEERINGWHEELAIRBAGCOVR": {
+     "group": "STEERING",
+     "pid": 2000701,
+     "title": "1013_steeringwheelairbagcovr"
+    },
+    "STEERING__2000703_649_STEERINGWHEELBRACKET": {
+     "group": "STEERING",
+     "pid": 2000703,
+     "title": "649_steeringwheelbracket"
+    },
+    "STEERING__2000704_645_STEERINGWHEEL": {
+     "group": "STEERING",
+     "pid": 2000704,
+     "title": "645_steeringwheel"
+    },
+    "STEERING__2000706_651_STEERINGWHEELCOLMN": {
+     "group": "STEERING",
+     "pid": 2000706,
+     "title": "651_steeringwheelcolmn"
+    },
+    "STEERING__2000707_1009_STEERINGCOLUMNLGREAR2": {
+     "group": "STEERING",
+     "pid": 2000707,
+     "title": "1009_steeringcolumnlgrear2"
+    },
+    "STEERING__2000709_1010_STEERINGCOLUMNLRGREAR": {
+     "group": "STEERING",
+     "pid": 2000709,
+     "title": "1010_steeringcolumnlrgrear"
+    },
+    "STEERING__2000710_646_STEERINGWHEELAIRBAG": {
+     "group": "STEERING",
+     "pid": 2000710,
+     "title": "646_steeringwheelairbag"
+    },
+    "TRIM-IP__2000721_935_DASHDISPLAYCOVERTOP": {
+     "group": "TRIM-IP",
+     "pid": 2000721,
+     "title": "935_dashdisplaycovertop"
+    },
+    "TRIM-IP__2000729_926_DASHKNEE": {
+     "group": "TRIM-IP",
+     "pid": 2000729,
+     "title": "926_dashknee"
+    },
+    "OTHER__2000732_920_DRIVERKNEEAIRBAGCOVER": {
+     "group": "OTHER",
+     "pid": 2000732,
+     "title": "920_driverkneeairbagcover"
+    },
+    "TRIM-IP__2000739_903_DASHDRIVERKNEEAIRBAG": {
+     "group": "TRIM-IP",
+     "pid": 2000739,
+     "title": "903_dashdriverkneeairbag"
+    },
+    "TRIM-IP__2000742_900_DASHDISPLAY": {
+     "group": "TRIM-IP",
+     "pid": 2000742,
+     "title": "900_dashdisplay"
+    },
+    "OTHER__2000933_1131_ANTISWAYBAR": {
+     "group": "OTHER",
+     "pid": 2000933,
+     "title": "1131_antiswaybar"
+    },
+    "GLASS-BACKLITE__2000977_46_WINDOWREAR_TOP": {
+     "group": "GLASS-BACKLITE",
+     "pid": 2000977,
+     "title": "46_windowrear_Top"
+    },
+    "GLASS-BACKLITE__2000978_46_WINDOWREAR_BOTTOM": {
+     "group": "GLASS-BACKLITE",
+     "pid": 2000978,
+     "title": "46_windowrear_Bottom"
+    },
+    "SEAT__2000980_1160_BENCHSEATBASE": {
+     "group": "SEAT",
+     "pid": 2000980,
+     "title": "1160_benchseatbase"
+    },
+    "SEAT__2001010_1190_SEATBASESUPPORTL": {
+     "group": "SEAT",
+     "pid": 2001010,
+     "title": "1190_seatbasesupportL"
+    },
+    "SEAT__2001011_1191_SEATREARUPPERLEFTBASE": {
+     "group": "SEAT",
+     "pid": 2001011,
+     "title": "1191_seatrearupperleftbase"
+    },
+    "SEAT__2001014_1194_SEATREARUPPERLEFTBASE2": {
+     "group": "SEAT",
+     "pid": 2001014,
+     "title": "1194_seatrearupperleftbase2"
+    },
+    "SEAT__2001023_1203_SEATREARLEFTSUPPORTTUBE": {
+     "group": "SEAT",
+     "pid": 2001023,
+     "title": "1203_seatrearleftsupporttube"
+    },
+    "OTHER__2001115_REAR_BUMPER_NULL_SHELLS": {
+     "group": "OTHER",
+     "pid": 2001115,
+     "title": "rear bumper null shells"
+    },
+    "PEDAL__2004501_2004501_BRAKEBASE1": {
+     "group": "PEDAL",
+     "pid": 2004501,
+     "title": "2004501_brakebase1"
+    },
+    "PEDAL__2004504_2004504_BRAKEARM": {
+     "group": "PEDAL",
+     "pid": 2004504,
+     "title": "2004504_brakearm"
+    },
+    "PEDAL__2004506_2004506_BRAKEPAD": {
+     "group": "PEDAL",
+     "pid": 2004506,
+     "title": "2004506_brakepad"
+    },
+    "SEAT__2005004_547_DRIVERSEATBASEMIDDLEDROSSMEMBER": {
+     "group": "SEAT",
+     "pid": 2005004,
+     "title": "547_driverseatbasemiddledrossmember"
+    },
+    "SEAT__2005008_570_BACKFRTCENTLWRBRKTDRIVERSEAT": {
+     "group": "SEAT",
+     "pid": 2005008,
+     "title": "570_backfrtcentlwrbrktdriverseat"
+    },
+    "SEAT__2005009_566_DRIVERSEATBACKREARUPPERBRKT": {
+     "group": "SEAT",
+     "pid": 2005009,
+     "title": "566_driverseatbackrearupperbrkt"
+    },
+    "SEAT__2005017_530_DRIVERSEATBASEFRONTPLATE": {
+     "group": "SEAT",
+     "pid": 2005017,
+     "title": "530_driverseatbasefrontplate"
+    },
+    "SEAT__2005023_548_DRIVERSEATBASEFRONTBAR": {
+     "group": "SEAT",
+     "pid": 2005023,
+     "title": "548_driverseatbasefrontbar"
+    },
+    "SEAT__2005026_545_DRIVERSEATBBASEREARBAR": {
+     "group": "SEAT",
+     "pid": 2005026,
+     "title": "545_driverseatbbaserearbar"
+    },
+    "SEAT__2005028_546_DRIVERSEATBASEMIDDLEMOTOR": {
+     "group": "SEAT",
+     "pid": 2005028,
+     "title": "546_driverseatbasemiddlemotor"
+    },
+    "SEAT__2005035_571_DRVRSEATBCKREARCENTRLWRBRKT": {
+     "group": "SEAT",
+     "pid": 2005035,
+     "title": "571_drvrseatbckrearcentrlwrbrkt"
+    },
+    "SEAT__2005036_567_DRIVERSEATBACKFRNTUPPRBRKT": {
+     "group": "SEAT",
+     "pid": 2005036,
+     "title": "567_driverseatbackfrntupprbrkt"
+    },
+    "SEAT__2005037_549_DRIVERSEATBASEFRONTBARLOWERBRACKET": {
+     "group": "SEAT",
+     "pid": 2005037,
+     "title": "549_driverseatbasefrontbarlowerbracket"
+    },
+    "SEAT__2005046_1106_SEATFRONTLBOTTOMFOAMSPRT": {
+     "group": "SEAT",
+     "pid": 2005046,
+     "title": "1106_seatfrontLbottomfoamsprt"
+    },
+    "SEAT__2005047_1107_SEATFRONTLTOPFROAMSPRT": {
+     "group": "SEAT",
+     "pid": 2005047,
+     "title": "1107_seatfrontLtopfroamsprt"
+    },
+    "OTHER__2005053_1131_HEADRESTBAR": {
+     "group": "OTHER",
+     "pid": 2005053,
+     "title": "1131_headrestbar"
+    }
+   }
+  },
+  {
+   "id": "B_X2370",
+   "title": "B-B 前排 SgRP 横截面",
+   "file": "B_X2370.dxf",
+   "plane": "X = 2370",
+   "axis": "x",
+   "value": 2370,
+   "u": "Y",
+   "v": "Z",
+   "desc": "X=2370（估算 SgRP 所在 X 平面）：顶盖边梁、B柱附近侧围、车门/门内饰、门槛、座椅。用于肩部/肘部空间 W3/W31 与顶盖边梁、门槛包络。",
+   "layers": {
+    "OTHER__2000107_93_SIDEPANEL": {
+     "group": "OTHER",
+     "pid": 2000107,
+     "title": "93_sidepanel"
+    },
+    "BIW-FLOOR__2000109_98_FLOORPANXMEMBER": {
+     "group": "BIW-FLOOR",
+     "pid": 2000109,
+     "title": "98_floorpanxmember"
+    },
+    "BIW-SILL__2000110_99_ROCKERPLANELINNER": {
+     "group": "BIW-SILL",
+     "pid": 2000110,
+     "title": "99_rockerplanelinner"
+    },
+    "BIW-PILLAR__2000116_106_BPILLARINNER": {
+     "group": "BIW-PILLAR",
+     "pid": 2000116,
+     "title": "106_bpillarinner"
+    },
+    "BIW-FLOOR__2000123_114_TUNNELREINFORCEMENT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000123,
+     "title": "114_tunnelreinforcement"
+    },
+    "BIW-FLOOR__2000125_116_FLOORFRONT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000125,
+     "title": "116_floorfront"
+    },
+    "BIW-FLOOR__2000154_212_FLOORPANXMEMBERREARR": {
+     "group": "BIW-FLOOR",
+     "pid": 2000154,
+     "title": "212_floorpanxmemberrearR"
+    },
+    "BIW-FLOOR__2000171_245_FLOORREARSUPPORT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000171,
+     "title": "245_floorrearsupport"
+    },
+    "BIW-SILL__2000179_96_ROCKERPANEL": {
+     "group": "BIW-SILL",
+     "pid": 2000179,
+     "title": "96_rockerpanel"
+    },
+    "BIW-ROOF__2000186_230_ROOFRAILSIDEINNER": {
+     "group": "BIW-ROOF",
+     "pid": 2000186,
+     "title": "230_roofrailsideinner"
+    },
+    "BIW-SILL__2000188_251_ROCKERSUPRTMID": {
+     "group": "BIW-SILL",
+     "pid": 2000188,
+     "title": "251_rockersuprtmid"
+    },
+    "BIW-PILLAR__2000192_253_ROCKERBRKTUDRBPILLAR": {
+     "group": "BIW-PILLAR",
+     "pid": 2000192,
+     "title": "253_rockerbrktudrbpillar"
+    },
+    "BIW-ROOF__2000199_123_SIDEROOFRAIL": {
+     "group": "BIW-ROOF",
+     "pid": 2000199,
+     "title": "123_sideroofrail"
+    },
+    "BIW-ROOF__2000222_301_ROOFOUTER": {
+     "group": "BIW-ROOF",
+     "pid": 2000222,
+     "title": "301_roofouter"
+    },
+    "OTHER__2000233_344_SIDEPANELR": {
+     "group": "OTHER",
+     "pid": 2000233,
+     "title": "344_sidepanelR"
+    },
+    "BIW-ROOF__2000239_326_ROOFRAILSIDEINNERR": {
+     "group": "BIW-ROOF",
+     "pid": 2000239,
+     "title": "326_roofrailsideinnerR"
+    },
+    "BIW-ROOF__2000240_322_SIDEROOFRAILR": {
+     "group": "BIW-ROOF",
+     "pid": 2000240,
+     "title": "322_sideroofrailR"
+    },
+    "BIW-PILLAR__2000244_335_BPILLARINNERR": {
+     "group": "BIW-PILLAR",
+     "pid": 2000244,
+     "title": "335_bpillarinnerR"
+    },
+    "BIW-SILL__2000245_338_ROCKERPANELR": {
+     "group": "BIW-SILL",
+     "pid": 2000245,
+     "title": "338_rockerpanelR"
+    },
+    "BIW-SILL__2000248_328_ROCKERPLANELINNERR": {
+     "group": "BIW-SILL",
+     "pid": 2000248,
+     "title": "328_rockerplanelinnerR"
+    },
+    "BIW-SILL__2000252_334_ROCKERSUPRTMIDR": {
+     "group": "BIW-SILL",
+     "pid": 2000252,
+     "title": "334_rockersuprtmidR"
+    },
+    "BIW-PILLAR__2000254_333_ROCKERBRKTUDRBPILLARR": {
+     "group": "BIW-PILLAR",
+     "pid": 2000254,
+     "title": "333_rockerbrktudrbpillarR"
+    },
+    "BIW-FLOOR__2000264_354_FLOORREARSUPPORTR": {
+     "group": "BIW-FLOOR",
+     "pid": 2000264,
+     "title": "354_floorrearsupportr"
+    },
+    "DOOR-OUTER__2000352_395_FRONTDOOROUTER": {
+     "group": "DOOR-OUTER",
+     "pid": 2000352,
+     "title": "395_frontdoorouter"
+    },
+    "DOOR-INNER__2000356_421_DOORFRONTMIDXMEMBER": {
+     "group": "DOOR-INNER",
+     "pid": 2000356,
+     "title": "421_doorfrontmidxmember"
+    },
+    "DOOR-INNER__2000357_427_DOORFRONTINTERIORMIDBRKT": {
+     "group": "DOOR-INNER",
+     "pid": 2000357,
+     "title": "427_doorfrontinteriormidbrkt"
+    },
+    "DOOR-INNER__2000359_393_FRONTDOORINNERRAR": {
+     "group": "DOOR-INNER",
+     "pid": 2000359,
+     "title": "393_frontdoorinnerrar"
+    },
+    "DOOR-FRAME__2000361_418_DOORFRONTWINDOWFRAME": {
+     "group": "DOOR-FRAME",
+     "pid": 2000361,
+     "title": "418_doorfrontwindowframe"
+    },
+    "DOOR-FRAME__2000363_859_DOORFRONTWINDOWFRAME2": {
+     "group": "DOOR-FRAME",
+     "pid": 2000363,
+     "title": "859_doorfrontwindowframe2"
+    },
+    "GLASS-SIDE__2000369_415_DOORFRONTWINDOW": {
+     "group": "GLASS-SIDE",
+     "pid": 2000369,
+     "title": "415_doorfrontwindow"
+    },
+    "DOOR-INNER__2000551_706_FRONTDOORINNERREARR": {
+     "group": "DOOR-INNER",
+     "pid": 2000551,
+     "title": "706_frontdoorinnerrearR"
+    },
+    "DOOR-OUTER__2000553_708_FRONTDOOROUTERR": {
+     "group": "DOOR-OUTER",
+     "pid": 2000553,
+     "title": "708_frontdoorouterR"
+    },
+    "GLASS-SIDE__2000554_709_DOORFRONTWINDOWR": {
+     "group": "GLASS-SIDE",
+     "pid": 2000554,
+     "title": "709_doorfrontwindowR"
+    },
+    "DOOR-FRAME__2000556_711_DOORFRONTWINDOWFRAMER": {
+     "group": "DOOR-FRAME",
+     "pid": 2000556,
+     "title": "711_doorfrontwindowframeR"
+    },
+    "DOOR-FRAME__2000557_712_DOORFRONTWINDOWFRAME2R": {
+     "group": "DOOR-FRAME",
+     "pid": 2000557,
+     "title": "712_doorfrontwindowframe2R"
+    },
+    "DOOR-INNER__2000559_714_DOORFRONTMIDXMEMBERR": {
+     "group": "DOOR-INNER",
+     "pid": 2000559,
+     "title": "714_doorfrontmidxmemberR"
+    },
+    "DOOR-INNER__2000560_715_DOORFRONTINERIORMIDBRKTR": {
+     "group": "DOOR-INNER",
+     "pid": 2000560,
+     "title": "715_doorfrontineriormidbrktR"
+    },
+    "OTHER__2000638_802_EXHAUSTFRONT": {
+     "group": "OTHER",
+     "pid": 2000638,
+     "title": "802_exhaustfront"
+    },
+    "DOOR-INNER__2000746_962_DOORFRONTBAR": {
+     "group": "DOOR-INNER",
+     "pid": 2000746,
+     "title": "962_doorfrontbar"
+    },
+    "DOOR-INNER__2000747_424_DOORFRONTBOTTOMREARBRKT": {
+     "group": "DOOR-INNER",
+     "pid": 2000747,
+     "title": "424_doorfrontbottomrearbrkt"
+    },
+    "DOOR-INNER__2000748_420_DOORFRONTUPPERXMEMBER": {
+     "group": "DOOR-INNER",
+     "pid": 2000748,
+     "title": "420_doorfrontupperxmember"
+    },
+    "DOOR-INNER__2000756_962_DOORFRONTBAR.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000756,
+     "title": "962_doorfrontbar.1"
+    },
+    "DOOR-INNER__2000757_424_DOORFRONTBOTTOMREARBRKT.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000757,
+     "title": "424_doorfrontbottomrearbrkt.1"
+    },
+    "DOOR-INNER__2000758_420_DOORFRONTUPPERXMEMBER.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000758,
+     "title": "420_doorfrontupperxmember.1"
+    },
+    "DOOR-INNER__2000767_889_DOORFRONTWINMOTORUPPERBAR": {
+     "group": "DOOR-INNER",
+     "pid": 2000767,
+     "title": "889_doorfrontwinmotorupperbar"
+    },
+    "DOOR-INNER__2000780_889_DOORFRONTWINMOTORUPPERBAR.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000780,
+     "title": "889_doorfrontwinmotorupperbar.1"
+    },
+    "SEAT__2000829_532_DRIVERSEATBASERIGHTREARFOOTBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000829,
+     "title": "532_driverseatbaserightrearfootbracket.1"
+    },
+    "SEAT__2000843_1015_DRIVERSEATBASECNTRREAR.1": {
+     "group": "SEAT",
+     "pid": 2000843,
+     "title": "1015_driverseatbasecntrrear.1"
+    },
+    "SEAT__2000848_532_DRIVERSEATBASERIGHTREARFOOTBRACKET.3": {
+     "group": "SEAT",
+     "pid": 2000848,
+     "title": "532_driverseatbaserightrearfootbracket.3"
+    },
+    "SEAT__2000850_535_DRIVERSEATBASERIGHTOUTERRAIL.1": {
+     "group": "SEAT",
+     "pid": 2000850,
+     "title": "535_driverseatbaserightouterrail.1"
+    },
+    "SEAT__2000851_536_DRIVERSEATBASERIGHTINNERRAIL.1": {
+     "group": "SEAT",
+     "pid": 2000851,
+     "title": "536_driverseatbaserightinnerrail.1"
+    },
+    "SEAT__2000853_538_DRIVERSEATBASERIGHTRAILREARBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000853,
+     "title": "538_driverseatbaserightrailrearbracket.1"
+    },
+    "SEAT__2000854_539_DRIVERSEATBASERIGHTUPPERRAIL.1": {
+     "group": "SEAT",
+     "pid": 2000854,
+     "title": "539_driverseatbaserightupperrail.1"
+    },
+    "SEAT__2000866_555_DRIVERSEATBASELEFTLOWERRAILOUTER.1": {
+     "group": "SEAT",
+     "pid": 2000866,
+     "title": "555_driverseatbaseleftlowerrailouter.1"
+    },
+    "SEAT__2000867_556_DRIVERSEATBASELEFTLOWERRAILINNER.1": {
+     "group": "SEAT",
+     "pid": 2000867,
+     "title": "556_driverseatbaseleftlowerrailinner.1"
+    },
+    "SEAT__2000868_557_DRIVERSEATBASELEFTUPPERRAIL.1": {
+     "group": "SEAT",
+     "pid": 2000868,
+     "title": "557_driverseatbaseleftupperrail.1"
+    },
+    "SEAT__2000869_558_DRIVERSEATBASELEFTLOWERRAILREARBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000869,
+     "title": "558_driverseatbaseleftlowerrailrearbracket.1"
+    },
+    "SEAT__2000870_559_DRIVERSEATBASELEFTUPPERRAILMIDDLEBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000870,
+     "title": "559_driverseatbaseleftupperrailmiddlebracket.1"
+    },
+    "SEAT__2000871_560_DRIVERSEATBASELEFTGEARBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000871,
+     "title": "560_driverseatbaseleftgearbracket.1"
+    },
+    "TRIM-DOOR__2000889_1085_DOORFRONTTRIMMID": {
+     "group": "TRIM-DOOR",
+     "pid": 2000889,
+     "title": "1085_doorfronttrimmid"
+    },
+    "TRIM-DOOR__2000890_1086_DOORFRONTTRIMARMREST": {
+     "group": "TRIM-DOOR",
+     "pid": 2000890,
+     "title": "1086_doorfronttrimarmrest"
+    },
+    "TRIM-DOOR__2000891_1087_DOORFRONTTRIMLOWER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000891,
+     "title": "1087_doorfronttrimlower"
+    },
+    "TRIM-DOOR__2000894_1089_DOORFRONTTRIMUPPER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000894,
+     "title": "1089_doorfronttrimupper"
+    },
+    "TRIM-DOOR__2000900_1095_DOORFRONTTRIMMIDL": {
+     "group": "TRIM-DOOR",
+     "pid": 2000900,
+     "title": "1095_doorfronttrimmidL"
+    },
+    "TRIM-DOOR__2000901_1096_DOORFRONTTRIMARMRESTL": {
+     "group": "TRIM-DOOR",
+     "pid": 2000901,
+     "title": "1096_doorfronttrimarmrestL"
+    },
+    "TRIM-DOOR__2000902_1097_DOORFRONTTRIMLOWERL": {
+     "group": "TRIM-DOOR",
+     "pid": 2000902,
+     "title": "1097_doorfronttrimlowerL"
+    },
+    "TRIM-DOOR__2000904_1099_DOORFRONTTRIMUPPER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000904,
+     "title": "1099_doorfronttrimupper"
+    },
+    "TRIM-PILLAR__2000916_1109_BPILLARLOWERTRIM": {
+     "group": "TRIM-PILLAR",
+     "pid": 2000916,
+     "title": "1109_bpillarlowertrim"
+    },
+    "TRIM-PILLAR__2000923_1118_BPILLARUPPERINNERTRIMR": {
+     "group": "TRIM-PILLAR",
+     "pid": 2000923,
+     "title": "1118_bpillarupperinnertrimR"
+    },
+    "SEAT__2000928_1106_SEATFRONTLBOTTOMFOAMSPRT.1": {
+     "group": "SEAT",
+     "pid": 2000928,
+     "title": "1106_seatfrontLbottomfoamsprt.1"
+    },
+    "OTHER__2000983_1163_CONSOLEBASEOUTER": {
+     "group": "OTHER",
+     "pid": 2000983,
+     "title": "1163_consolebaseouter"
+    },
+    "OTHER__2000984_1164_CONSOLEBASEINNER": {
+     "group": "OTHER",
+     "pid": 2000984,
+     "title": "1164_consolebaseinner"
+    },
+    "OTHER__2000991_1171_CONSOLELID": {
+     "group": "OTHER",
+     "pid": 2000991,
+     "title": "1171_consolelid"
+    },
+    "OTHER__2000998_1178_CONSOLESIDER": {
+     "group": "OTHER",
+     "pid": 2000998,
+     "title": "1178_consolesideR"
+    },
+    "OTHER__2000999_1179_CONSOLESIDEL": {
+     "group": "OTHER",
+     "pid": 2000999,
+     "title": "1179_consolesideL"
+    },
+    "OTHER__2001003_1183_CONSOLEMAIN": {
+     "group": "OTHER",
+     "pid": 2001003,
+     "title": "1183_consolemain"
+    },
+    "BIW-PILLAR__2001055_L_B-PILLAR_LOWER": {
+     "group": "BIW-PILLAR",
+     "pid": 2001055,
+     "title": "L_B-pillar_lower"
+    },
+    "BIW-PILLAR__2001056_R_B-PILLAR_LOWER": {
+     "group": "BIW-PILLAR",
+     "pid": 2001056,
+     "title": "R_B-pillar_lower"
+    },
+    "SEAT__2001111_PASS_SEAT_ATT1": {
+     "group": "SEAT",
+     "pid": 2001111,
+     "title": "pass_seat_att1"
+    },
+    "SEAT__2001114_PASS_SEAT_ATT4": {
+     "group": "SEAT",
+     "pid": 2001114,
+     "title": "pass_seat_att4"
+    },
+    "SEAT__2005000_DRIVER_SEAT_ATT1": {
+     "group": "SEAT",
+     "pid": 2005000,
+     "title": "driver_seat_att1"
+    },
+    "SEAT__2005003_DRIVER_SEAT_ATT4": {
+     "group": "SEAT",
+     "pid": 2005003,
+     "title": "driver_seat_att4"
+    },
+    "SEAT__2005020_558_DRIVERSEATBASELEFTLOWERRAILREARBRACKET": {
+     "group": "SEAT",
+     "pid": 2005020,
+     "title": "558_driverseatbaseleftlowerrailrearbracket"
+    },
+    "SEAT__2005024_535_DRIVERSEATBASERIGHTOUTERRAIL": {
+     "group": "SEAT",
+     "pid": 2005024,
+     "title": "535_driverseatbaserightouterrail"
+    },
+    "SEAT__2005025_536_DRIVERSEATBASERIGHTINNERRAIL": {
+     "group": "SEAT",
+     "pid": 2005025,
+     "title": "536_driverseatbaserightinnerrail"
+    },
+    "SEAT__2005029_538_DRIVERSEATBASERIGHTRAILREARBRACKET": {
+     "group": "SEAT",
+     "pid": 2005029,
+     "title": "538_driverseatbaserightrailrearbracket"
+    },
+    "SEAT__2005030_1015_DRIVERSEATBASECNTRREAR": {
+     "group": "SEAT",
+     "pid": 2005030,
+     "title": "1015_driverseatbasecntrrear"
+    },
+    "SEAT__2005040_559_DRIVERSEATBASELEFTUPPERRAILMIDDLEBRACKET": {
+     "group": "SEAT",
+     "pid": 2005040,
+     "title": "559_driverseatbaseleftupperrailmiddlebracket"
+    },
+    "SEAT__2005041_560_DRIVERSEATBASELEFTGEARBRACKET": {
+     "group": "SEAT",
+     "pid": 2005041,
+     "title": "560_driverseatbaseleftgearbracket"
+    },
+    "SEAT__2005042_557_DRIVERSEATBASELEFTUPPERRAIL": {
+     "group": "SEAT",
+     "pid": 2005042,
+     "title": "557_driverseatbaseleftupperrail"
+    },
+    "SEAT__2005043_539_DRIVERSEATBASERIGHTUPPERRAIL": {
+     "group": "SEAT",
+     "pid": 2005043,
+     "title": "539_driverseatbaserightupperrail"
+    },
+    "SEAT__2005044_556_DRIVERSEATBASELEFTLOWERRAILINNER": {
+     "group": "SEAT",
+     "pid": 2005044,
+     "title": "556_driverseatbaseleftlowerrailinner"
+    },
+    "SEAT__2005045_555_DRIVERSEATBASELEFTLOWERRAILOUTER": {
+     "group": "SEAT",
+     "pid": 2005045,
+     "title": "555_driverseatbaseleftlowerrailouter"
+    },
+    "SEAT__2005046_1106_SEATFRONTLBOTTOMFOAMSPRT": {
+     "group": "SEAT",
+     "pid": 2005046,
+     "title": "1106_seatfrontLbottomfoamsprt"
+    }
+   }
+  },
+  {
+   "id": "C_X2000",
+   "title": "C-C 前门中部横截面",
+   "file": "C_X2000.dxf",
+   "plane": "X = 2000",
+   "axis": "x",
+   "value": 2000,
+   "u": "Y",
+   "v": "Z",
+   "desc": "X=2000：前门中部，门槛、车门内外板、门框、玻璃、顶盖边梁。用于门槛高度、门-侧围间隙/面差与玻璃位置。",
+   "layers": {
+    "BIW-ROOF__2000019_119_FRONTROOFHEADER": {
+     "group": "BIW-ROOF",
+     "pid": 2000019,
+     "title": "119_frontroofheader"
+    },
+    "BIW-ROOF__2000020_816_FRONTROOFHEADERSIDER": {
+     "group": "BIW-ROOF",
+     "pid": 2000020,
+     "title": "816_frontroofheadersideR"
+    },
+    "OTHER__2000107_93_SIDEPANEL": {
+     "group": "OTHER",
+     "pid": 2000107,
+     "title": "93_sidepanel"
+    },
+    "BIW-FLOOR__2000108_97_FLOORPANXMEMBERFRNT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000108,
+     "title": "97_floorpanxmemberfrnt"
+    },
+    "BIW-SILL__2000110_99_ROCKERPLANELINNER": {
+     "group": "BIW-SILL",
+     "pid": 2000110,
+     "title": "99_rockerplanelinner"
+    },
+    "BIW-PILLAR__2000111_100_APILLARUPPER": {
+     "group": "BIW-PILLAR",
+     "pid": 2000111,
+     "title": "100_apillarupper"
+    },
+    "BIW-FLOOR__2000123_114_TUNNELREINFORCEMENT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000123,
+     "title": "114_tunnelreinforcement"
+    },
+    "BIW-FLOOR__2000125_116_FLOORFRONT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000125,
+     "title": "116_floorfront"
+    },
+    "BIW-FLOOR__2000129_209_TUNNELCENTERSUPPORT": {
+     "group": "BIW-FLOOR",
+     "pid": 2000129,
+     "title": "209_tunnelcentersupport"
+    },
+    "BIW-FLOOR__2000153_223_FLOORPANXMEMBERFRONTR": {
+     "group": "BIW-FLOOR",
+     "pid": 2000153,
+     "title": "223_floorpanxmemberfrontR"
+    },
+    "OTHER__2000170_220_SHOTGUNUNDER": {
+     "group": "OTHER",
+     "pid": 2000170,
+     "title": "220_shotgununder"
+    },
+    "BIW-SILL__2000179_96_ROCKERPANEL": {
+     "group": "BIW-SILL",
+     "pid": 2000179,
+     "title": "96_rockerpanel"
+    },
+    "BIW-ROOF__2000182_122_FRONTROOFHEADERSIDEL": {
+     "group": "BIW-ROOF",
+     "pid": 2000182,
+     "title": "122_frontroofheadersideL"
+    },
+    "BIW-ROOF__2000186_230_ROOFRAILSIDEINNER": {
+     "group": "BIW-ROOF",
+     "pid": 2000186,
+     "title": "230_roofrailsideinner"
+    },
+    "BIW-SILL__2000189_248_ROCKERFRONTBRKT": {
+     "group": "BIW-SILL",
+     "pid": 2000189,
+     "title": "248_rockerfrontbrkt"
+    },
+    "BIW-SILL__2000191_246_ROCKERHORIZONTALSUPRTMID": {
+     "group": "BIW-SILL",
+     "pid": 2000191,
+     "title": "246_rockerhorizontalsuprtmid"
+    },
+    "BIW-SILL__2000219_247_ROCKERHORIZONTALSUPRTFRONT": {
+     "group": "BIW-SILL",
+     "pid": 2000219,
+     "title": "247_rockerhorizontalsuprtfront"
+    },
+    "BIW-ROOF__2000222_301_ROOFOUTER": {
+     "group": "BIW-ROOF",
+     "pid": 2000222,
+     "title": "301_roofouter"
+    },
+    "OTHER__2000227_821_SHOTGUNUNDERSUPPORTREAR": {
+     "group": "OTHER",
+     "pid": 2000227,
+     "title": "821_shotgunundersupportrear"
+    },
+    "OTHER__2000233_344_SIDEPANELR": {
+     "group": "OTHER",
+     "pid": 2000233,
+     "title": "344_sidepanelR"
+    },
+    "BIW-PILLAR__2000238_321_APILLARUPPERR": {
+     "group": "BIW-PILLAR",
+     "pid": 2000238,
+     "title": "321_apillarupperR"
+    },
+    "BIW-ROOF__2000239_326_ROOFRAILSIDEINNERR": {
+     "group": "BIW-ROOF",
+     "pid": 2000239,
+     "title": "326_roofrailsideinnerR"
+    },
+    "BIW-SILL__2000245_338_ROCKERPANELR": {
+     "group": "BIW-SILL",
+     "pid": 2000245,
+     "title": "338_rockerpanelR"
+    },
+    "BIW-SILL__2000248_328_ROCKERPLANELINNERR": {
+     "group": "BIW-SILL",
+     "pid": 2000248,
+     "title": "328_rockerplanelinnerR"
+    },
+    "BIW-SILL__2000249_329_ROCKERHORIZONTALSUPRTFRONTR": {
+     "group": "BIW-SILL",
+     "pid": 2000249,
+     "title": "329_rockerhorizontalsuprtfrontR"
+    },
+    "BIW-SILL__2000250_330_ROCKERHORIZONTALSUPRTMIDR": {
+     "group": "BIW-SILL",
+     "pid": 2000250,
+     "title": "330_rockerhorizontalsuprtmidR"
+    },
+    "BIW-SILL__2000251_331_ROCKERFRONTBRKTR": {
+     "group": "BIW-SILL",
+     "pid": 2000251,
+     "title": "331_rockerfrontbrktR"
+    },
+    "OTHER__2000261_350_SHOTGUNUNDERR": {
+     "group": "OTHER",
+     "pid": 2000261,
+     "title": "350_shotgununderR"
+    },
+    "OTHER__2000263_352_SHOTGUNUNDERSUPPRTREARR": {
+     "group": "OTHER",
+     "pid": 2000263,
+     "title": "352_shotgunundersupprtrearR"
+    },
+    "GLASS-WINDSHIELD__2000290_50_WINDSHIELD_MIDLAYER": {
+     "group": "GLASS-WINDSHIELD",
+     "pid": 2000290,
+     "title": "50_windshield_Midlayer"
+    },
+    "DOOR-OUTER__2000352_395_FRONTDOOROUTER": {
+     "group": "DOOR-OUTER",
+     "pid": 2000352,
+     "title": "395_frontdoorouter"
+    },
+    "DOOR-INNER__2000356_421_DOORFRONTMIDXMEMBER": {
+     "group": "DOOR-INNER",
+     "pid": 2000356,
+     "title": "421_doorfrontmidxmember"
+    },
+    "DOOR-INNER__2000357_427_DOORFRONTINTERIORMIDBRKT": {
+     "group": "DOOR-INNER",
+     "pid": 2000357,
+     "title": "427_doorfrontinteriormidbrkt"
+    },
+    "DOOR-INNER__2000359_393_FRONTDOORINNERRAR": {
+     "group": "DOOR-INNER",
+     "pid": 2000359,
+     "title": "393_frontdoorinnerrar"
+    },
+    "DOOR-FRAME__2000361_418_DOORFRONTWINDOWFRAME": {
+     "group": "DOOR-FRAME",
+     "pid": 2000361,
+     "title": "418_doorfrontwindowframe"
+    },
+    "DOOR-FRAME__2000363_859_DOORFRONTWINDOWFRAME2": {
+     "group": "DOOR-FRAME",
+     "pid": 2000363,
+     "title": "859_doorfrontwindowframe2"
+    },
+    "GLASS-SIDE__2000369_415_DOORFRONTWINDOW": {
+     "group": "GLASS-SIDE",
+     "pid": 2000369,
+     "title": "415_doorfrontwindow"
+    },
+    "DOOR-INNER__2000551_706_FRONTDOORINNERREARR": {
+     "group": "DOOR-INNER",
+     "pid": 2000551,
+     "title": "706_frontdoorinnerrearR"
+    },
+    "DOOR-OUTER__2000553_708_FRONTDOOROUTERR": {
+     "group": "DOOR-OUTER",
+     "pid": 2000553,
+     "title": "708_frontdoorouterR"
+    },
+    "GLASS-SIDE__2000554_709_DOORFRONTWINDOWR": {
+     "group": "GLASS-SIDE",
+     "pid": 2000554,
+     "title": "709_doorfrontwindowR"
+    },
+    "DOOR-FRAME__2000556_711_DOORFRONTWINDOWFRAMER": {
+     "group": "DOOR-FRAME",
+     "pid": 2000556,
+     "title": "711_doorfrontwindowframeR"
+    },
+    "DOOR-FRAME__2000557_712_DOORFRONTWINDOWFRAME2R": {
+     "group": "DOOR-FRAME",
+     "pid": 2000557,
+     "title": "712_doorfrontwindowframe2R"
+    },
+    "DOOR-INNER__2000559_714_DOORFRONTMIDXMEMBERR": {
+     "group": "DOOR-INNER",
+     "pid": 2000559,
+     "title": "714_doorfrontmidxmemberR"
+    },
+    "DOOR-INNER__2000560_715_DOORFRONTINERIORMIDBRKTR": {
+     "group": "DOOR-INNER",
+     "pid": 2000560,
+     "title": "715_doorfrontineriormidbrktR"
+    },
+    "OTHER__2000638_802_EXHAUSTFRONT": {
+     "group": "OTHER",
+     "pid": 2000638,
+     "title": "802_exhaustfront"
+    },
+    "GLASS-WINDSHIELD__2000647_50_WINDSHIELD_TOP": {
+     "group": "GLASS-WINDSHIELD",
+     "pid": 2000647,
+     "title": "50_windshield_Top"
+    },
+    "GLASS-WINDSHIELD__2000648_50_WINDSHIELD_BOTTOM": {
+     "group": "GLASS-WINDSHIELD",
+     "pid": 2000648,
+     "title": "50_windshield_Bottom"
+    },
+    "STEERING__2000675_648_STEERINGWHEELVOLCTRL": {
+     "group": "STEERING",
+     "pid": 2000675,
+     "title": "648_steeringwheelvolctrl"
+    },
+    "STEERING__2000702_647_STEERINGWHEELDEVICECTRL": {
+     "group": "STEERING",
+     "pid": 2000702,
+     "title": "647_steeringwheeldevicectrl"
+    },
+    "STEERING__2000703_649_STEERINGWHEELBRACKET": {
+     "group": "STEERING",
+     "pid": 2000703,
+     "title": "649_steeringwheelbracket"
+    },
+    "STEERING__2000704_645_STEERINGWHEEL": {
+     "group": "STEERING",
+     "pid": 2000704,
+     "title": "645_steeringwheel"
+    },
+    "DOOR-INNER__2000746_962_DOORFRONTBAR": {
+     "group": "DOOR-INNER",
+     "pid": 2000746,
+     "title": "962_doorfrontbar"
+    },
+    "DOOR-INNER__2000748_420_DOORFRONTUPPERXMEMBER": {
+     "group": "DOOR-INNER",
+     "pid": 2000748,
+     "title": "420_doorfrontupperxmember"
+    },
+    "DOOR-INNER__2000756_962_DOORFRONTBAR.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000756,
+     "title": "962_doorfrontbar.1"
+    },
+    "DOOR-INNER__2000758_420_DOORFRONTUPPERXMEMBER.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000758,
+     "title": "420_doorfrontupperxmember.1"
+    },
+    "DOOR-INNER__2000767_889_DOORFRONTWINMOTORUPPERBAR": {
+     "group": "DOOR-INNER",
+     "pid": 2000767,
+     "title": "889_doorfrontwinmotorupperbar"
+    },
+    "DOOR-INNER__2000772_883_DOORFRONTWINDMOTORMBLADE": {
+     "group": "DOOR-INNER",
+     "pid": 2000772,
+     "title": "883_doorfrontwindmotormblade"
+    },
+    "DOOR-INNER__2000773_884_DOORFRONTBLADE1": {
+     "group": "DOOR-INNER",
+     "pid": 2000773,
+     "title": "884_doorfrontblade1"
+    },
+    "DOOR-INNER__2000780_889_DOORFRONTWINMOTORUPPERBAR.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000780,
+     "title": "889_doorfrontwinmotorupperbar.1"
+    },
+    "DOOR-INNER__2000785_883_DOORFRONTWINDMOTORMBLADE.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000785,
+     "title": "883_doorfrontwindmotormblade.1"
+    },
+    "DOOR-INNER__2000786_884_DOORFRONTBLADE1.1": {
+     "group": "DOOR-INNER",
+     "pid": 2000786,
+     "title": "884_doorfrontblade1.1"
+    },
+    "SEAT__2000805_531_DRIVERSEATBASERIGHTFRONTFOOTBRACKET": {
+     "group": "SEAT",
+     "pid": 2000805,
+     "title": "531_driverseatbaserightfrontfootbracket"
+    },
+    "SEAT__2000828_534_DRIVERSEATBASELEFTFRONTFOOTBRACKET": {
+     "group": "SEAT",
+     "pid": 2000828,
+     "title": "534_driverseatbaseleftfrontfootbracket"
+    },
+    "SEAT__2000845_530_DRIVERSEATBASEFRONTPLATE.1": {
+     "group": "SEAT",
+     "pid": 2000845,
+     "title": "530_driverseatbasefrontplate.1"
+    },
+    "SEAT__2000846_531_DRIVERSEATBASERIGHTFRONTFOOTBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000846,
+     "title": "531_driverseatbaserightfrontfootbracket.1"
+    },
+    "SEAT__2000849_534_DRIVERSEATBASELEFTFRONTFOOTBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000849,
+     "title": "534_driverseatbaseleftfrontfootbracket.1"
+    },
+    "SEAT__2000862_550_DRIVERSEATBASEFRONTBARRIGHTBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000862,
+     "title": "550_driverseatbasefrontbarrightbracket.1"
+    },
+    "SEAT__2000863_551_DRIVERSEATBASEFRONTBARLEFTBRACKET.1": {
+     "group": "SEAT",
+     "pid": 2000863,
+     "title": "551_driverseatbasefrontbarleftbracket.1"
+    },
+    "SEAT__2000865_553_DRIVERSEATBASELEFTUPPERRAILOUTERFRONTBRACK": {
+     "group": "SEAT",
+     "pid": 2000865,
+     "title": "553_driverseatbaseleftupperrailouterfrontbracket.1"
+    },
+    "TRIM-DOOR__2000889_1085_DOORFRONTTRIMMID": {
+     "group": "TRIM-DOOR",
+     "pid": 2000889,
+     "title": "1085_doorfronttrimmid"
+    },
+    "TRIM-DOOR__2000890_1086_DOORFRONTTRIMARMREST": {
+     "group": "TRIM-DOOR",
+     "pid": 2000890,
+     "title": "1086_doorfronttrimarmrest"
+    },
+    "TRIM-DOOR__2000891_1087_DOORFRONTTRIMLOWER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000891,
+     "title": "1087_doorfronttrimlower"
+    },
+    "TRIM-DOOR__2000894_1089_DOORFRONTTRIMUPPER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000894,
+     "title": "1089_doorfronttrimupper"
+    },
+    "TRIM-DOOR__2000897_1092_DOORFRONTTRIMHOLDER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000897,
+     "title": "1092_doorfronttrimholder"
+    },
+    "TRIM-DOOR__2000900_1095_DOORFRONTTRIMMIDL": {
+     "group": "TRIM-DOOR",
+     "pid": 2000900,
+     "title": "1095_doorfronttrimmidL"
+    },
+    "TRIM-DOOR__2000901_1096_DOORFRONTTRIMARMRESTL": {
+     "group": "TRIM-DOOR",
+     "pid": 2000901,
+     "title": "1096_doorfronttrimarmrestL"
+    },
+    "TRIM-DOOR__2000902_1097_DOORFRONTTRIMLOWERL": {
+     "group": "TRIM-DOOR",
+     "pid": 2000902,
+     "title": "1097_doorfronttrimlowerL"
+    },
+    "TRIM-DOOR__2000904_1099_DOORFRONTTRIMUPPER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000904,
+     "title": "1099_doorfronttrimupper"
+    },
+    "TRIM-DOOR__2000907_1102_DOORFRONTTRIMHOLDER": {
+     "group": "TRIM-DOOR",
+     "pid": 2000907,
+     "title": "1102_doorfronttrimholder"
+    },
+    "TRIM-PILLAR__2000914_1105_APILLARTRIML": {
+     "group": "TRIM-PILLAR",
+     "pid": 2000914,
+     "title": "1105_apillartrimL"
+    },
+    "TRIM-PILLAR__2000924_1118_BPILLARUPPERINNERTRIMR.1": {
+     "group": "TRIM-PILLAR",
+     "pid": 2000924,
+     "title": "1118_bpillarupperinnertrimR.1"
+    },
+    "OTHER__2000998_1178_CONSOLESIDER": {
+     "group": "OTHER",
+     "pid": 2000998,
+     "title": "1178_consolesideR"
+    },
+    "OTHER__2000999_1179_CONSOLESIDEL": {
+     "group": "OTHER",
+     "pid": 2000999,
+     "title": "1179_consolesideL"
+    },
+    "SEAT__2005017_530_DRIVERSEATBASEFRONTPLATE": {
+     "group": "SEAT",
+     "pid": 2005017,
+     "title": "530_driverseatbasefrontplate"
+    },
+    "SEAT__2005019_553_DRIVERSEATBASELEFTUPPERRAILOUTERFRONTBRACK": {
+     "group": "SEAT",
+     "pid": 2005019,
+     "title": "553_driverseatbaseleftupperrailouterfrontbracket"
+    },
+    "SEAT__2005022_550_DRIVERSEATBASEFRONTBARRIGHTBRACKET": {
+     "group": "SEAT",
+     "pid": 2005022,
+     "title": "550_driverseatbasefrontbarrightbracket"
+    },
+    "SEAT__2005038_551_DRIVERSEATBASEFRONTBARLEFTBRACKET": {
+     "group": "SEAT",
+     "pid": 2005038,
+     "title": "551_driverseatbasefrontbarleftbracket"
+    }
+   }
+  }
+ ],
+ "refs": {
+  "SgRP": {
+   "x": 2370,
+   "y": 375,
+   "z": 530,
+   "status": "estimate",
+   "note": "估算：由驾驶员座椅靠背铰接支架位置推算（铰点前约130、上约80）。模型无坐垫泡沫，请在 A 截面拖动修正。"
+  },
+  "AHP": {
+   "x": 1600,
+   "y": 375,
+   "z": 232,
+   "status": "estimate",
+   "note": "估算：油门踏板后约 230 mm 处的地板上表面。模型无地毯（通常再高 15–20 mm），请拖动修正。"
+  }
+ }
+}
